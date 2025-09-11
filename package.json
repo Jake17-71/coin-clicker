@@ -1,0 +1,21 @@
+{
+  "name": "config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "sass": "sass styles/styles.scss styles/styles.css",
+    "postcss": "postcss styles/styles.css -o styles/styles.css",
+    "build": "npm run sass && npm run postcss",
+    "watch": "sass --watch ."
+  },
+  "private": true,
+
+  "devDependencies": {
+    "sass": "^1.79.4",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss-pxtorem": "^6.1.0"
+  }
+}
