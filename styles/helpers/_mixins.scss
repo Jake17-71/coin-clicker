@@ -67,10 +67,53 @@
   clip-path: inset(100%) !important;
 }
 
-@mixin focus-visible {
-  outline: 2px dashed var(--color-white);
-  outline-offset: 4px;
-  transition-duration: 0s !important;
+@mixin focus-visible-typing {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Для полей где печатают - убираем рамку при активном использовании
+  &:focus-visible:not(:active) {
+    outline: 2px dashed var(--color-black);
+    outline-offset: 4px;
+    transition-duration: 0s !important;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Убираем рамку когда пользователь начинает печатать
+  &:focus:active,
+  &:focus-visible:active {
+    outline: none !important;
+  }
+
+  // Убираем outline при наличии значения в поле
+  &:not(:placeholder-shown):focus-visible {
+    outline: none !important;
+  }
+}
+
+@mixin focus-visible-no-typing {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Для полей где НЕ печатают - всегда показываем рамку при focus-visible
+  &:focus-visible {
+    outline: 2px dashed var(--color-black);
+    outline-offset: 4px;
+    transition-duration: 0s !important;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 @mixin disabled {
