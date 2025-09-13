@@ -116,6 +116,36 @@
   }
 }
 
+@mixin focus-visible-masked-input {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Показываем рамку при focus-visible
+  &:focus-visible {
+    outline: 2px dashed var(--color-black);
+    outline-offset: 4px;
+    transition-duration: 0s !important;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+
+  // Убираем рамку при активном нажатии
+  &:focus-visible:active {
+    outline: none !important;
+  }
+
+  // Убираем рамку если поле имеет классы валидации (значит пользователь начал печатать)
+  &.valid:focus-visible,
+  &.invalid:focus-visible {
+    outline: none !important;
+  }
+}
+
 @mixin disabled {
   opacity: 0.5;
   cursor: not-allowed;
