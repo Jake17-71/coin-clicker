@@ -1,14 +1,39 @@
 @use 'helpers/index' as *;
 
 :root {
-  --color-white: #ffffff;
-  --color-black: #000000;
+  --bg-dark: oklch(0.1 0.005 20);
+  --bg: oklch(0.15 0.005 20);
+  --bg-light: oklch(0.2 0.005 20);
+  --text: oklch(0.96 0.01 20);
+  --text-muted: oklch(0.76 0.01 20);
+  --highlight: oklch(0.5 0.01 20);
+  --border-color: oklch(0.4 0.01 20);
+  --border-muted: oklch(0.3 0.01 20);
+  --primary: oklch(0.76 0.1 20);
+  --secondary: oklch(0.76 0.1 200);
+  --danger: oklch(0.7 0.05 30);
+  --warning: oklch(0.7 0.05 100);
+  --success: oklch(0.7 0.05 160);
+  --info: oklch(0.7 0.05 260);
 
-  --color-accent: #e50000;
+  body.light {
+    --bg-dark: oklch(0.92 0.005 20);
+    --bg: oklch(0.96 0.005 20);
+    --bg-light: oklch(1 0.005 20);
+    --text: oklch(0.15 0.01 20);
+    --text-muted: oklch(0.4 0.01 20);
+    --highlight: oklch(1 0.01 20);
+    --border-color: oklch(0.6 0.01 20);
+    --border-muted: oklch(0.7 0.01 20);
+    --primary: oklch(0.4 0.1 20);
+    --secondary: oklch(0.4 0.1 200);
+    --danger: oklch(0.5 0.05 30);
+    --warning: oklch(0.5 0.05 100);
+    --success: oklch(0.5 0.05 160);
+    --info: oklch(0.5 0.05 260);
+  }
 
-  --color-gray: #808080;
-
-  --border: var(--border-width-m) solid var(--color-accent);
+  --border: var(--border-width-m) solid var(--border-color);
 
   --border-width-xl: 6px;
   --border-width-l: 4px;
