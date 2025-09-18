@@ -75,7 +75,7 @@
 
   // Для полей где печатают - убираем рамку при активном использовании
   &:focus-visible:not(:active) {
-    outline: 2px dashed var(--color-black);
+    outline: 2px dashed var(--text);
     outline-offset: 4px;
     transition-duration: 0s !important;
   }
@@ -105,7 +105,7 @@
 
   // Для полей где НЕ печатают - всегда показываем рамку при focus-visible
   &:focus-visible {
-    outline: 2px dashed var(--color-black);
+    outline: 2px dashed var(--text);
     outline-offset: 4px;
     transition-duration: 0s !important;
   }
@@ -124,7 +124,7 @@
 
   // Показываем рамку при focus-visible
   &:focus-visible {
-    outline: 2px dashed var(--color-black);
+    outline: 2px dashed var(--text);
     outline-offset: 4px;
     transition-duration: 0s !important;
   }
