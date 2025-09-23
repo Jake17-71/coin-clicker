@@ -1,3 +1,3 @@
-import ExampleCollection from './modules/ExampleCollection'
+import ThemeChangeCollection from './modules/ThemeChangeCollection.js'
 
-new ExampleCollection()
+new ThemeChangeCollection()

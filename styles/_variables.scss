@@ -47,6 +47,8 @@
   --border-radius-xxs: 5px;
   --border-radius-xxxs: 4px;
 
+  --input-height: 48px;
+
   --font-family-base: 'Manrope';
 
   --container-width: #{fluid-to-laptop(
@@ -56,4 +58,5 @@
   --container-padding-x: 16px;
 
   --transition-duration: 0.2s;
+  --transition-change-theme: 0.4s;
 }

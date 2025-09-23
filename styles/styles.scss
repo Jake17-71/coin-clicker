@@ -4,4 +4,11 @@
 @use 'utils';
 @use 'globals';
 
-@use './components/icon';
+@use 'components/header';
+@use 'components/button';
+
+/*
+ПОМЕНЯТЬ В ХЭДЕРЕ НА КНОПКЕ СМЕНЫ ТЕМЫ:
+1. ИКОНКИ ДЛЯ 2 ТЕМ
+2. АНИМАЦИИ
+*/

@@ -1,0 +1,47 @@
+@use '../helpers' as *;
+
+.button {
+  height: var(--input-height);
+  border-radius: 34px;
+
+  @include hover() {
+    transition-duration: var(--transition-duration);
+    background-color: var(--border-muted);
+  }
+
+  @include focus-visible-no-typing;
+
+  &-theme {
+    --sizeButton: 96px;
+
+    @include tablet {
+      --sizeButton: 76px;
+      --input-height: 36px;
+    }
+
+    position: relative;
+    width: var(--sizeButton);
+    background-color: var(--bg-light);
+    border: var(--border);
+
+    &-toggle {
+      @include abs-y;
+
+      content: '';
+      border-radius: 50%;
+      background-color: var(--text);
+      left: calc(var(--sizeButton) / 8);
+      width: calc(var(--sizeButton) / 4);
+      height: calc(var(--sizeButton) / 4);
+
+      transition-duration: var(--transition-change-theme);
+
+      &.is-active {
+        --translateX: calc(var(--sizeButton) / 2.2);
+
+        background-color: var(--primary);
+        transform: translateX(var(--translateX));
+      }
+    }
+  }
+}
