@@ -26,20 +26,26 @@
 
     &-toggle {
       @include abs-y;
+      @include flex-center;
 
-      content: '';
-      border-radius: 50%;
-      background-color: var(--text);
-      left: calc(var(--sizeButton) / 8);
       width: calc(var(--sizeButton) / 4);
       height: calc(var(--sizeButton) / 4);
+      left: calc(var(--sizeButton) / 8);
 
       transition-duration: var(--transition-change-theme);
 
+      svg {
+        width: calc(var(--sizeButton) / 4);
+        height: calc(var(--sizeButton) / 4);
+        transition-duration: var(--transition-change-theme);
+
+        border: var(--border-width-s) solid var(--border-color);
+        border-radius: 50%;
+        background-color: var(--bg-dark);
+      }
+
       &.is-active {
         --translateX: calc(var(--sizeButton) / 2.2);
-
-        background-color: var(--primary);
         transform: translateX(var(--translateX));
       }
     }

@@ -151,17 +151,6 @@ label {
 }
 
 /**
-  Приводим к единому цвету svg-элементы
- */
-[fill] {
-  fill: currentColor;
-}
-
-[stroke] {
-  stroke: currentColor;
-}
-
-/**
   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
  */
 svg * {
@@ -452,24 +441,80 @@ a[class] {
   position: absolute;
   top: 50%;
   translate: 0 -50%;
-  content: "";
-  border-radius: 50%;
-  background-color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--sizeButton) / 4);
+  height: calc(var(--sizeButton) / 4);
   left: calc(var(--sizeButton) / 8);
+  transition-duration: var(--transition-change-theme);
+}
+.button-theme-toggle svg {
   width: calc(var(--sizeButton) / 4);
   height: calc(var(--sizeButton) / 4);
   transition-duration: var(--transition-change-theme);
+  border: var(--border-width-s) solid var(--border-color);
+  border-radius: 50%;
+  background-color: var(--bg-dark);
 }
 .button-theme-toggle.is-active {
   --translateX: calc(var(--sizeButton) / 2.2);
-  background-color: var(--primary);
   transform: translateX(var(--translateX));
 }
 
-/*
-ПОМЕНЯТЬ В ХЭДЕРЕ НА КНОПКЕ СМЕНЫ ТЕМЫ:
-1. ИКОНКИ ДЛЯ 2 ТЕМ
-2. АНИМАЦИИ
-*/
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 1.25rem;
+}
+
+.soc1als__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+.soc1als__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.soc1als__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+}
+.soc1als__link:focus {
+  outline: none;
+  box-shadow: none;
+}
+.soc1als__link:focus-visible {
+  outline: 0.125rem dashed var(--text);
+  outline-offset: 0.25rem;
+  transition-duration: 0s !important;
+}
+.soc1als__link:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+@media (any-hover: hover) {
+  .soc1als__link:hover {
+    color: var(--border-muted);
+    transition-duration: var(--transition-duration);
+  }
+}
+@media (any-hover: none) {
+  .soc1als__link:active {
+    color: var(--border-muted);
+    transition-duration: var(--transition-duration);
+  }
+}
+.soc1als__link-icon-inner {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 
 /*# sourceMappingURL=styles.css.map */
