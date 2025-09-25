@@ -82,7 +82,6 @@ class ThemeChange {
     this.rootElement = rootElement
     this.buttonElement = this.rootElement.querySelector(this.selectors.button)
     this.toggleElement = this.rootElement.querySelector(this.selectors.toggle)
-    this.isLight = bodyElement.classList.contains(this.stateClasses.light)
 
     this.loadTheme()
     this.updateIcon()
@@ -90,10 +89,11 @@ class ThemeChange {
   }
 
   onButtonClick() {
+    const isLightNow = bodyElement.classList.contains(this.stateClasses.light)
     bodyElement.classList.toggle(this.stateClasses.light)
     this.toggleElement.classList.toggle(this.stateClasses.isActive)
 
-    localStorage.setItem('theme', this.isLight ? 'light' : 'dark')
+    localStorage.setItem('theme', isLightNow ? 'dark' : 'light')
 
     this.updateIcon()
   }
