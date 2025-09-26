@@ -1,0 +1,13 @@
+@use '../helpers' as *;
+
+.main {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'score-counter score-counter'
+    'game tabs-inner';
+  row-gap: 10px;
+  height: 80vh;
+  margin-bottom: 20px;
+}

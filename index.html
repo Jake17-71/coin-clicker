@@ -114,15 +114,33 @@
   </header>
 
   <main class="main container">
+    <div class="score-counter">
+      <span>Your Points:
+        <span class="score" data-js-score-display>1</span>
+      </span>
+    </div>
     <div
-      id="particles-js"
-      data-js-particles
-      role="presentation"
-      aria-hidden="true"
-      aria-label="Декоративная анимация монет"
-    ></div>
+      class="game"
+      data-js-game
+    >
+      <div class="clicking-object">
+        <button
+          type="button"
+          class="button button-clicking"
+          data-js-click-object
+        >
 
-    <div class="game-content">
+        </button>
+      </div>
+      <div
+        id="particles-js"
+        data-js-particles
+        role="presentation"
+        aria-hidden="true"
+        aria-label="Декоративная анимация монет"
+      ></div>
+    </div>
+    <div class="tabs-inner">
 
     </div>
   </main>

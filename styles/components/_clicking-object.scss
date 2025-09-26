@@ -1,0 +1,6 @@
+@use '../helpers' as *;
+
+.clicking-object {
+  @include flex-center();
+  margin: auto;
+}

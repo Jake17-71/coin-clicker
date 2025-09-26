@@ -1,0 +1,18 @@
+@use '../helpers' as *;
+
+.game {
+  position: relative;
+  display: flex;
+  border: var(--border);
+  border-radius: var(--border-radius-l);
+  grid-area: game;
+}
+
+.score-counter {
+  margin-left: 25%;
+  grid-area: score-counter;
+
+  @include fluid-text(24, 18);
+
+  font-weight: 400;
+}

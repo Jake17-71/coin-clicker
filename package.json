@@ -16,8 +16,5 @@
     "postcss-cli": "^11.0.0",
     "postcss-pxtorem": "^6.1.0",
     "sass": "^1.79.4"
-  },
-  "dependencies": {
-    "particles.js": "^2.0.0"
   }
 }

@@ -6,5 +6,9 @@
 
 @use 'components/header';
 @use 'components/button';
-@use  'components/footer';
-@use "components/particles";
+@use 'components/main';
+@use 'components/footer';
+@use 'components/particles';
+@use 'components/game';
+@use 'components/clicking-object';
+@use 'components/tabs';
