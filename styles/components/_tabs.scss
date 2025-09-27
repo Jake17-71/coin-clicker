@@ -1,8 +1,121 @@
 @use '../helpers' as *;
 
 .tabs-inner {
+  display: flex;
+  justify-content: center;
   border: var(--border);
   border-radius: var(--border-radius-l);
   margin-left: 25px;
   grid-area: tabs-inner;
+}
+
+.tabs-content-inner {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  gap: 10px;
+  padding: 25px;
+  width: 100%;
+}
+
+.tabs {
+  --tabs-nav-gap: 10px;
+  --tabs-transition: var(--transition-duration);
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &__nav {
+    @include flex-center();
+
+    align-self: center;
+    gap: var(--tabs-nav-gap);
+    background-color: var(--bg-light);
+    padding: 7px 20px;
+    border-radius: var(--border-radius-m);
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    margin-bottom: 6px;
+  }
+
+  &__nav-item {
+    position: relative;
+    flex-shrink: 0;
+    min-height: var(--input-height);
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: var(--border-radius-m);
+    transition-duration: var(--tabs-transition);
+    transition-property: background-color, color, transform;
+
+
+    @include focus-visible-no-typing;
+
+    @include hover {
+      background-color: var(--bg-dark);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    // Активный таб
+    &.is-active {
+      background-color: var(--bg);
+      color: var(--text);
+
+      &:hover {
+        transform: none;
+        background-color: var(--bg);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 2px;
+        background-color: var(--primary);
+        border-radius: 1px;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    align-self: center;
+    min-height: 200px;
+    background-color: var(--bg);
+    overflow: hidden;
+  }
+
+  &__panel {
+    padding: 0 24px;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    transform: translateX(20px);
+    transition-duration: var(--tabs-transition);
+    transition-property: opacity, visibility, transform;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      position: static;
+      transform: translateX(0);
+    }
+  }
 }
