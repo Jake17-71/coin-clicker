@@ -8,6 +8,8 @@
     'score-counter score-counter'
     'game tabs-inner';
   row-gap: 10px;
-  height: 80vh;
+  height: calc(100vh - 170px);
+  max-height: calc(100vh - 170px);
   margin-bottom: 20px;
+  overflow: hidden;
 }

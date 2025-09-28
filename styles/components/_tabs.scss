@@ -21,7 +21,6 @@
 
 .tabs {
   --tabs-nav-gap: 10px;
-  --tabs-transition: var(--transition-duration);
 
   display: flex;
   flex-direction: column;
@@ -38,6 +37,7 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     margin-bottom: 6px;
+    transition-duration: var(--transition-change-theme);
   }
 
   &__nav-item {
@@ -49,8 +49,8 @@
     background: transparent;
     color: var(--text-muted);
     border-radius: var(--border-radius-m);
-    transition-duration: var(--tabs-transition);
     transition-property: background-color, color, transform;
+    transition-duration: var(--transition-change-theme);
 
 
     @include focus-visible-no-typing;
@@ -59,6 +59,7 @@
       background-color: var(--bg-dark);
       color: var(--text);
       transform: translateY(-1px);
+      transition-duration: var(--transition-duration);
     }
 
     &:active {
@@ -92,9 +93,11 @@
   &__content {
     position: relative;
     align-self: center;
-    min-height: 200px;
+    height: 450px;
+    max-height: 650px;
     background-color: var(--bg);
     overflow: hidden;
+    transition-duration: var(--transition-change-theme);
   }
 
   &__panel {
@@ -108,7 +111,7 @@
     bottom: 0;
     overflow-y: hidden;
     transform: translateX(20px);
-    transition-duration: var(--tabs-transition);
+    transition-duration: var(--transition-change-theme);
     transition-property: opacity, visibility, transform;
 
     &.is-active {
@@ -116,6 +119,7 @@
       visibility: visible;
       position: static;
       transform: translateX(0);
+      height: 100%;
     }
   }
 }

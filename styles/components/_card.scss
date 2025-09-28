@@ -1,0 +1,41 @@
+@use '../helpers' as *;
+
+.card {
+  @include flex-center();
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-xs);
+  border: 1px solid var(--border-muted);
+  transition-duration: var(--transition-change-theme);
+  text-align: center;
+  cursor: default;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+
+    &-inner {
+      @include square(100px);
+    }
+  }
+
+  &__description {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    width: 100%;
+    color: var(--text-muted);
+  }
+
+  &__price {
+    @include flex-center();
+    gap: 5px;
+
+    &-image {
+      @include square(24px);
+    }
+  }
+}

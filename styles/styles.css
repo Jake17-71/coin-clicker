@@ -397,6 +397,7 @@ a[class] {
 .button {
   height: var(--input-height);
   border-radius: 2.125rem;
+  transition-duration: var(--transition-change-theme);
 }
 @media (any-hover: hover) {
   .button:hover {
@@ -453,7 +454,6 @@ a[class] {
 .button-theme-toggle svg {
   width: calc(var(--sizeButton) / 4);
   height: calc(var(--sizeButton) / 4);
-  transition-duration: var(--transition-change-theme);
   border: var(--border-width-s) solid var(--border-color);
   border-radius: 50%;
   background-color: var(--bg-dark);
@@ -465,9 +465,36 @@ a[class] {
 .button-clicking {
   width: 18.75rem;
   height: 18.75rem;
+  background-color: var(--bg-light);
+  border: var(--border);
+  color: var(--text-muted);
 }
 .button-reset {
   align-self: end;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--bg-light);
+  border: var(--border);
+  color: var(--text-muted);
+}
+.button-reset svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+@media (any-hover: hover) {
+  .button-reset:hover svg {
+    animation-name: spin360deg;
+    animation-duration: 0.7s;
+  }
+}
+.button-popup-link {
+  --input-height: 2.25rem;
+  border-radius: var(--border-radius-m);
+  background-color: var(--bg-light);
+  border: var(--border);
+  color: var(--text-muted);
+  border-width: var(--border-width-s);
 }
 
 .main {
@@ -476,8 +503,10 @@ a[class] {
   grid-template-rows: auto 1fr;
   grid-template-areas: "score-counter score-counter" "game tabs-inner";
   row-gap: 0.625rem;
-  height: 80vh;
+  height: calc(100vh - 10.625rem);
+  max-height: calc(100vh - 10.625rem);
   margin-bottom: 1.25rem;
+  overflow: hidden;
 }
 
 .footer {
@@ -595,7 +624,6 @@ a[class] {
 
 .tabs {
   --tabs-nav-gap: 0.625rem;
-  --tabs-transition: var(--transition-duration);
   display: flex;
   flex-direction: column;
   gap: 0.3125rem;
@@ -612,6 +640,7 @@ a[class] {
   scroll-behavior: smooth;
   scrollbar-width: none;
   margin-bottom: 0.375rem;
+  transition-duration: var(--transition-change-theme);
 }
 .tabs__nav-item {
   position: relative;
@@ -622,8 +651,8 @@ a[class] {
   background: transparent;
   color: var(--text-muted);
   border-radius: var(--border-radius-m);
-  transition-duration: var(--tabs-transition);
   transition-property: background-color, color, transform;
+  transition-duration: var(--transition-change-theme);
 }
 .tabs__nav-item:focus {
   outline: none;
@@ -643,6 +672,7 @@ a[class] {
     background-color: var(--bg-dark);
     color: var(--text);
     transform: translateY(-0.0625rem);
+    transition-duration: var(--transition-duration);
   }
 }
 @media (any-hover: none) {
@@ -650,6 +680,7 @@ a[class] {
     background-color: var(--bg-dark);
     color: var(--text);
     transform: translateY(-0.0625rem);
+    transition-duration: var(--transition-duration);
   }
 }
 .tabs__nav-item:active {
@@ -677,9 +708,11 @@ a[class] {
 .tabs__content {
   position: relative;
   align-self: center;
-  min-height: 12.5rem;
+  height: 28.125rem;
+  max-height: 40.625rem;
   background-color: var(--bg);
   overflow: hidden;
+  transition-duration: var(--transition-change-theme);
 }
 .tabs__panel {
   padding: 0 1.5rem;
@@ -692,7 +725,7 @@ a[class] {
   bottom: 0;
   overflow-y: hidden;
   transform: translateX(1.25rem);
-  transition-duration: var(--tabs-transition);
+  transition-duration: var(--transition-change-theme);
   transition-property: opacity, visibility, transform;
 }
 .tabs__panel.is-active {
@@ -700,6 +733,7 @@ a[class] {
   visibility: visible;
   position: static;
   transform: translateX(0);
+  height: 100%;
 }
 
 .rules {
@@ -723,47 +757,92 @@ a[class] {
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+  height: 100%;
 }
 .inventory__title {
   font-size: clamp(1.5rem, 1.3388429752rem + 0.6611570248vw, 2rem);
   font-weight: 400;
   text-align: center;
+  flex-shrink: 0;
 }
-.inventory-card {
-  padding: 0.5rem;
-  background-color: var(--bg-light);
-  border-radius: var(--border-radius-xs);
-  border: 0.0625rem solid var(--border-muted);
-}
-.list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.9375rem;
-  max-height: 25rem;
-  overflow: auto;
-}
+
 .shop {
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+  height: 100%;
 }
 .shop__title {
   font-size: clamp(1.5rem, 1.3388429752rem + 0.6611570248vw, 2rem);
   font-weight: 400;
   text-align: center;
+  flex-shrink: 0;
 }
-.shop-card {
-  padding: 0.5rem;
-  background-color: var(--bg-light);
-  border-radius: var(--border-radius-xs);
-  border: 0.0625rem solid var(--border-muted);
-}
+
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.9375rem;
-  max-height: 25rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+  max-height: 31.25rem;
+  padding-right: 0.5rem;
+}
+.list::-webkit-scrollbar {
+  width: 0.375rem;
+}
+.list::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 0.1875rem;
+}
+.list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 0.1875rem;
+}
+.list::-webkit-scrollbar-thumb:hover {
+  background: var(--border-muted);
+}
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.3125rem;
+  padding: 0.9375rem;
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-xs);
+  border: 0.0625rem solid var(--border-muted);
+  transition-duration: var(--transition-change-theme);
+  text-align: center;
+  cursor: default;
+}
+.card__image {
+  width: 100%;
+  height: 100%;
+}
+.card__image-inner {
+  width: 6.25rem;
+  height: 6.25rem;
+}
+.card__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.625rem;
+  width: 100%;
+  color: var(--text-muted);
+}
+.card__price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3125rem;
+}
+.card__price-image {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
