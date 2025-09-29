@@ -25,6 +25,14 @@
     background-color: var(--bg-light);
     border: var(--border);
 
+    @include hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
     &-toggle {
       @include abs-y;
       @include flex-center;
@@ -56,6 +64,15 @@
     background-color: var(--bg-light);
     border: var(--border);
     color: var(--text-muted);
+
+    @include hover {
+      background-color: var(--border-color);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
 
   &-reset {
@@ -76,6 +93,12 @@
         animation-name: spin360deg;
         animation-duration: 0.7s;
       }
+
+      transform: translateY(-2px);
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
 
@@ -86,5 +109,14 @@
     border: var(--border);
     color: var(--text-muted);
     border-width: var(--border-width-s);
+
+    @include hover {
+      background-color: var(--border-color);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
 }

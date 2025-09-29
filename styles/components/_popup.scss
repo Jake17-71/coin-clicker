@@ -1,0 +1,162 @@
+@use "../helpers" as *;
+
+.popup-container {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: visibility 0s linear 0.25s;
+
+  &[aria-hidden="false"] {
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  &[aria-hidden="true"] {
+    visibility: hidden;
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  .popup-container[aria-hidden="false"] & {
+    opacity: 1;
+  }
+}
+
+.popup {
+  position: relative;
+  left: 35vw;
+  top: 35vh;
+  z-index: 1001;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  .popup-container[aria-hidden="false"] & {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  &__close {
+    --size: 24px;
+    position: absolute;
+    top: calc(var(--size) / 2);
+    right: calc(var(--size) / 2);
+    z-index: 1;
+
+    @include square(var(--size));
+    @include flex-center;
+
+    padding: 0;
+    border: none;
+    background-color: var(--bg-light);
+    border-radius: 50%;
+    border: var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background-color var(--transition-duration),
+    color var(--transition-duration),
+    transform var(--transition-duration);
+
+    @include focus-visible-no-typing;
+
+    @include hover() {
+      background-color: var(--border-color);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    @include hover() {
+      background-color: var(--highlight);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      @include abs-center;
+      width: calc(var(--size) / 2);
+      height: 2px;
+      background-color: var(--text-muted);
+      border-radius: var(--border-radius-m);
+    }
+
+    &::before {
+      rotate: 45deg;
+    }
+
+    &::after {
+      rotate: -45deg;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 24px;
+    background-color: var(--bg);
+    border: var(--border);
+    border-radius: var(--border-radius-l);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    max-height: inherit;
+    transition-duration: var(--transition-change-theme);
+  }
+
+  &__title {
+    h2 {
+      margin: 0;
+
+      @include fluid-text(28, 22);
+
+      font-weight: 600;
+      color: var(--text);
+    }
+  }
+
+  &__description {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  &__button-close {
+    align-self: center;
+    min-height: var(--input-height);
+    padding: 10px 24px;
+    border: var(--border);
+    border-radius: var(--border-radius-m);
+    background-color: var(--bg-light);
+    color: var(--text);
+    transition: background-color var(--transition-duration),
+    color var(--transition-duration),
+    transform var(--transition-duration);
+
+    @include focus-visible-no-typing;
+
+    @include hover {
+      background-color: var(--border-color);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

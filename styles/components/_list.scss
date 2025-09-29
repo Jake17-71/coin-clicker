@@ -14,21 +14,18 @@
   &::-webkit-scrollbar {
     width: 6px;
   }
+
   &::-webkit-scrollbar-track {
-    background: var(--bg);
+    background-color: var(--bg);
     border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--border-color);
+    background-color: var(--border-color);
     border-radius: 3px;
 
     &:hover {
-      background: var(--border-muted);
+      background-color: var(--border-muted);
     }
-  }
-
-  &__item {
-
   }
 }

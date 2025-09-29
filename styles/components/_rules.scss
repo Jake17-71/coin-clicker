@@ -16,5 +16,7 @@
     flex-direction: column;
     padding-left: 23px;
     gap: 10px;
+    color: var(--text-muted);
+    transition-duration: var(--transition-change-theme);
   }
 }

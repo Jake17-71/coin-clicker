@@ -145,6 +145,8 @@
         <button
           type="button"
           class="button button-reset"
+          aria-label="Сброс прогресса"
+          title="Сброс прогресса"
           data-js-reset-button
         >
           <svg fill="#000000" width="24px" height="24px"
@@ -490,6 +492,56 @@
       </ul>
     </div>
   </footer>
+  <div
+    class="popup-container"
+    data-js-popup-container
+    aria-hidden="true"
+  >
+    <div
+      class="popup-overlay"
+      data-js-popup-overlay
+      aria-hidden="true"
+    >
+      <div
+        class="popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="popup-title"
+        aria-describedby="popup-description"
+        tabindex="-1"
+        data-js-popup
+      >
+        <button
+          type="button"
+          class="popup__close"
+          aria-label="Закрыть диалоговое окно"
+          data-js-popup-close
+        >
+        </button>
+        <div
+          class="popup__content"
+          data-js-popup-content
+        >
+          <div class="popup__title">
+            <h2 id="popup-title">Подтвердите действие</h2>
+          </div>
+          <div class="popup__description">
+            <p>Вы уверены, что хотите сбросить весь прогресс?</p>
+          </div>
+          <button
+            type="button"
+            class="popup__button-close"
+            aria-label="Закрыть модальное окно"
+            data-js-popup-close
+            data-js-popup-clean-data-button
+          >
+            Да
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
