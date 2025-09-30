@@ -2,6 +2,7 @@
 
 .footer {
   @include flex-center;
+  flex-shrink: 0;
 }
 
 .soc1als {

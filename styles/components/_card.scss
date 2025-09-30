@@ -1,41 +1,102 @@
+// styles/components/_card.scss
 @use '../helpers' as *;
 
 .card {
   @include flex-center();
   flex-direction: column;
-  gap: 5px;
-  padding: 15px;
+  gap: 10px;
+  padding: 20px 15px;
   background-color: var(--bg-light);
-  border-radius: var(--border-radius-xs);
+  border-radius: var(--border-radius-m);
   border: var(--border);
+  transition-property: transform, box-shadow, border-color, background-color;
   transition-duration: var(--transition-change-theme);
   text-align: center;
   cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity var(--transition-duration);
+  }
+
+  @include hover(false) {
+    transform: translateY(-4px);
+    border-color: var(--border-muted);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .card__image {
+      transform: scale(1.05);
+    }
+  }
 
   &__image {
     width: 100%;
     height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-duration);
 
     &-inner {
+      @include flex-center();
       @include square(100px);
+      transition: background-color var(--transition-change-theme);
     }
+  }
+
+  &__title {
+    @include fluid-text(18, 16);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-change-theme);
   }
 
   &__description {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 12px;
     width: 100%;
-    color: var(--text-muted);
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-muted);
+    transition: border-color var(--transition-change-theme);
   }
 
   &__price {
     @include flex-center();
-    gap: 5px;
+    gap: 6px;
+    padding: 6px 10px;
+    background-color: var(--bg-dark);
+    border-radius: var(--border-radius-xxs);
+    transition: background-color var(--transition-change-theme);
 
     &-image {
       @include square(20px);
+      @include flex-center();
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-digit {
+      @include fluid-text(16, 14);
+      color: var(--text);
+      line-height: 1;
     }
   }
 }
