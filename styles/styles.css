@@ -1112,16 +1112,78 @@ a[class] {
   max-height: inherit;
   transition-duration: var(--transition-change-theme);
 }
+.popup__content--card {
+  display: grid;
+  gap: 0.9375rem;
+  grid-template: "image title" "image price" "description description" "buttons buttons";
+  place-items: center;
+}
+.popup__image {
+  width: 100%;
+  height: 100%;
+  border: var(--border);
+  border-radius: var(--border-radius-l);
+}
+.popup__image-inner--card {
+  grid-area: image;
+  width: 7.5rem;
+  height: 7.5rem;
+  justify-items: center;
+  align-items: center;
+}
 .popup__title h2 {
   margin: 0;
   font-size: clamp(1.375rem, 1.2541322314rem + 0.4958677686vw, 1.75rem);
   font-weight: 600;
   color: var(--text);
 }
+.popup__title--card {
+  grid-area: title;
+  text-align: center;
+}
+.popup__price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  background-color: var(--bg-dark);
+  border-radius: var(--border-radius-xxs);
+  transition: background-color var(--transition-change-theme);
+}
+.popup__price-image {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup__price-image svg {
+  width: 100%;
+  height: 100%;
+}
+.popup__price-digit {
+  font-size: clamp(0.875rem, 0.8347107438rem + 0.1652892562vw, 1rem);
+  color: var(--text);
+  line-height: 1;
+}
 .popup__description {
   margin: 0;
   line-height: 1.6;
   color: var(--text-muted);
+}
+.popup__description--card {
+  grid-area: description;
+}
+.popup__buttons-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1.25rem;
+  width: 100%;
+}
+.popup__buttons-inner--card {
+  grid-area: buttons;
 }
 .popup__button-close {
   align-self: center;
