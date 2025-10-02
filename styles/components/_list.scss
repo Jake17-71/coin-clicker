@@ -2,18 +2,23 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, var(--card-width));
   grid-auto-rows: max-content;
   align-content: start;
+  justify-content: center;
   gap: 15px;
   overflow-y: auto;
   overflow-x: hidden;
   flex: 1;
   min-height: 0;
   padding-right: 8px;
+  max-width: 100%;
 
   &__item {
     height: fit-content;
+    width: 100%;
+    max-width: var(--card-width);
+    display: flex;
   }
 
   &::-webkit-scrollbar {

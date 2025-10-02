@@ -59,4 +59,10 @@
 
   --transition-duration: 0.2s;
   --transition-change-theme: 0.4s;
+
+  --card-width: 220px;
+
+  @include laptop {
+    --card-width: 180px;
+  }
 }
