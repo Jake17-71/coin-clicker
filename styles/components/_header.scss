@@ -19,6 +19,14 @@
   margin-bottom: 10px;
   flex-shrink: 0;
 
+  @include tablet {
+    margin-bottom: 20px;
+  }
+
+  @include mobile {
+    margin-bottom: 35px;
+  }
+
   @include fluid-text(38, 20);
 
   font-weight: 700;
@@ -38,7 +46,16 @@
   }
 
   &__logo {
+    @include square(48px);
     @include flex-center();
+
+    @include tablet {
+      @include square(36px);
+    }
+
+    @include mobile {
+      @include square(30px);
+    }
   }
 
   &__theme-icon-inner {

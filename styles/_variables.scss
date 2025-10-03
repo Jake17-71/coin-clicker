@@ -38,6 +38,7 @@
   --border-width-xl: 6px;
   --border-width-l: 4px;
   --border-width-m: 3px;
+  --border-width-xm: 2px;
   --border-width-s: 1px;
 
   --border-radius-l: 12px;
@@ -61,8 +62,4 @@
   --transition-change-theme: 0.4s;
 
   --card-width: 220px;
-
-  @include laptop {
-    --card-width: 180px;
-  }
 }

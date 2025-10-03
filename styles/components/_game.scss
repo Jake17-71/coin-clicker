@@ -9,7 +9,9 @@
 }
 
 .score-counter {
-  margin-left: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: score-counter;
 
   @include fluid-text(24, 18);

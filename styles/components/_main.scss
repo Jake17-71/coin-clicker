@@ -12,4 +12,12 @@
   min-height: 0;
   margin-bottom: 20px;
   overflow: hidden;
+
+  @include tablet {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+    'score-counter burger-button'
+    'game game';
+    overflow: visible;
+  }
 }

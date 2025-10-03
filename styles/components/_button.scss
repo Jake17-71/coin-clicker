@@ -15,15 +15,16 @@
   &-theme {
     --sizeButton: 96px;
 
-    @include tablet {
-      --sizeButton: 76px;
-      --input-height: 36px;
-    }
-
     position: relative;
     width: var(--sizeButton);
     background-color: var(--bg-light);
     border: var(--border);
+
+    @include tablet {
+      --sizeButton: 76px;
+      --input-height: 36px;
+      border-width: var(--border-width-xm);
+    }
 
     @include hover {
       transform: translateY(-2px);
@@ -73,14 +74,24 @@
     &:active {
       transform: translateY(0);
     }
+
+    @include tablet {
+      @include square(200px);
+    }
   }
 
   &-reset {
-    align-self: end;
-    @include square(48px);
+    --sizeButton: 48px;
+
+    @include square(var(--sizeButton));
     background-color: var(--bg-light);
     border: var(--border);
     color: var(--text-muted);
+
+    @include tablet {
+      --sizeButton: 36px;
+      border-width: var(--border-width-xm);
+    }
 
     svg {
       width: 100%;
@@ -103,7 +114,11 @@
   }
 
   &-popup-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     --input-height: 36px;
+    padding: 10px;
     border-radius: var(--border-radius-m);
     background-color: var(--bg-light);
     border: var(--border);
@@ -117,6 +132,59 @@
 
     &:active {
       transform: translateY(0);
+    }
+
+    @include laptop {
+      --input-height: 30px;
+      padding: 7px;
+    }
+
+    @include tablet {
+      --input-height: 30px;
+      padding: 5px;
+    }
+  }
+
+  &-tabs-close-button {
+    --sizeButton: 36px;
+
+    @include square(var(--sizeButton));
+
+    position: relative;
+    background-color: var(--bg-light);
+    border: var(--border);
+    color: var(--text-muted);
+
+    @include hover {
+      background-color: var(--border-muted);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    @include tablet {
+      border-width: var(--border-width-xm);
+    }
+
+    &::before,
+    &::after {
+      @include abs-center;
+
+      content: '';
+      background-color: var(--text-muted);
+      width: 2px;
+      height: calc(var(--sizeButton) / 2);
+      border-radius: 3px;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
     }
   }
 }

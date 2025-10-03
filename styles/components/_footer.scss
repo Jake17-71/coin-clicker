@@ -9,6 +9,7 @@
   &__list {
     @include flex-center;
     gap: 20px;
+    padding-block: 15px;
   }
 
   &__item {
