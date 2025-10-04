@@ -106,9 +106,21 @@ class ThemeChange {
   loadTheme() {
     const savedTheme = localStorage.getItem('theme')
 
-    if (savedTheme === this.stateClasses.light) {
-      bodyElement.classList.add(this.stateClasses.light)
-      this.toggleElement.classList.add(this.stateClasses.isActive)
+    if (savedTheme === null) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const themeToSet = prefersDark ? 'dark' : 'light'
+
+      localStorage.setItem('theme', themeToSet)
+
+      if (themeToSet === 'light') {
+        bodyElement.classList.add(this.stateClasses.light)
+        this.toggleElement.classList.add(this.stateClasses.isActive)
+      }
+    } else {
+      if (savedTheme === 'light') {
+        bodyElement.classList.add(this.stateClasses.light)
+        this.toggleElement.classList.add(this.stateClasses.isActive)
+      }
     }
   }
 
