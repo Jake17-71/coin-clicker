@@ -104,23 +104,27 @@ class ThemeChange {
   }
 
   loadTheme() {
-    const savedTheme = localStorage.getItem('theme')
+    try {
+      const savedTheme = localStorage.getItem('theme')
 
-    if (savedTheme === null) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const themeToSet = prefersDark ? 'dark' : 'light'
+      if (savedTheme === null) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const themeToSet = prefersDark ? 'dark' : 'light'
 
-      localStorage.setItem('theme', themeToSet)
+        localStorage.setItem('theme', themeToSet)
 
-      if (themeToSet === 'light') {
-        bodyElement.classList.add(this.stateClasses.light)
-        this.toggleElement.classList.add(this.stateClasses.isActive)
+        if (themeToSet === 'light') {
+          bodyElement.classList.add(this.stateClasses.light)
+          this.toggleElement.classList.add(this.stateClasses.isActive)
+        }
+      } else {
+        if (savedTheme === 'light') {
+          bodyElement.classList.add(this.stateClasses.light)
+          this.toggleElement.classList.add(this.stateClasses.isActive)
+        }
       }
-    } else {
-      if (savedTheme === 'light') {
-        bodyElement.classList.add(this.stateClasses.light)
-        this.toggleElement.classList.add(this.stateClasses.isActive)
-      }
+    } catch (error) {
+      console.log("Load Theme error:", error)
     }
   }
 

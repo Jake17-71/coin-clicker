@@ -1130,6 +1130,11 @@ a[class] {
     gap: 0.625rem;
   }
 }
+.list.is-empty {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: red;
+}
 .list__item {
   height: -moz-fit-content;
   height: fit-content;

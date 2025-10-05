@@ -1,6 +1,6 @@
-import GameScoreLogic from './GameScoreLogic.js'
-import GameClickHandler from './GameClickHandler.js'
-import GameStorageLogic from './GameStorageLogic.js'
+import GameScoreLogic from './gameLogic/GameScoreLogic.js'
+import GameClickHandler from './gameLogic/GameClickHandler.js'
+import GameStorageLogic from './gameLogic/GameStorageLogic.js'
 
 class GameMain {
 
@@ -31,7 +31,7 @@ class GameMain {
     this.storageLogic.loadStorage()
     this.storageLogic.startAutoSave()
 
-    this.scoreLogic.updateDisplay(this.scoreLogic.displayElements)
+    this.scoreLogic.updateDisplay()
     this.scoreLogic.setPassiveIncome()
   }
 }

@@ -4,28 +4,34 @@ class GameScoreLogic {
     displaySelector: `[data-js-score-display]`
   }
 
+  gameConfig = {
+    score: null,
+    clickPower: 1,
+    passiveScore: 0,
+    criticalClickChance: 0,
+    criticalMultiplier: 2,
+  }
 
   constructor(initialScore = 0) {
     this.score = initialScore
-    this.clickPower = 1
-    this.passiveScore = 0
-    this.criticalClickChance = 0
-    this.criticalMultiplier = 2
+    this.clickPower = this.gameConfig.clickPower
+    this.passiveScore = this.gameConfig.passiveScore
+    this.criticalClickChance = this.gameConfig.criticalClickChance
+    this.criticalMultiplier = this.gameConfig.criticalMultiplier
     this.displayElements = document.querySelectorAll(this.selectors.displaySelector)
   }
 
   addScore () {
-    this.score += this.clickPower
 
     if (this.isCriticalClickActivate() === true) {
       this.score += this.clickPower * this.criticalMultiplier
-    }
+    } else this.score += this.clickPower
 
-    this.updateDisplay(this.displayElements)
+    this.updateDisplay()
   }
 
-  updateDisplay (displayElements) {
-    displayElements.forEach(element => {
+  updateDisplay () {
+    this.displayElements.forEach(element => {
       element.textContent = this.score
     })
   }
@@ -36,7 +42,7 @@ class GameScoreLogic {
 
   spendScore (cardPrice) {
     this.score -= cardPrice
-    this.updateDisplay(this.displayElements)
+    this.updateDisplay()
   }
 
   addClickPower (amount = 2) {
