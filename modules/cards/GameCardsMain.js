@@ -1,12 +1,10 @@
-import GameMain from '../GameMain'
-
 class GameCard {
   cardsConfig = {
     cardClickPowerUp: {
       id: `card-1`,
       image: `/images/1.png`,
       title: 'Click Power',
-      price: 500,
+      price: 100,
     },
     cardPassiveIncome: {
       id: `card-2`,
@@ -18,7 +16,7 @@ class GameCard {
       id: `card-3`,
       image: `/images/3.png`,
       title: 'Critical Click',
-      price: 1500,
+      price: 500,
     }
   }
 
@@ -41,7 +39,7 @@ class GameCard {
     this.cardButtonDescriptionElement = this.selectors.cardButtonDescriptionSelector
 
     this.listItemElement = this.selectors.listItemSelector
-    this.emptyMessageElement = this.selectors.emptyMessageSelector
+    this.emptyMessageElement = null
 
     this.activeCards = new Map()
   }
@@ -59,10 +57,10 @@ class GameCard {
 
     const li = document.createElement('li')
     li.className = 'list__item'
-    li.dataset.cardId = cardId
+    li.dataset.jsListItem = '';
+    li.dataset.jsCardId = cardId
 
     li.innerHTML = `
-    <li class="list__item">
       <div
         class="card"
         data-js-card
@@ -107,7 +105,6 @@ class GameCard {
           </button>
         </div>
       </div>
-    </li>
     `
 
     return li
@@ -116,7 +113,8 @@ class GameCard {
   createEmptyMessage(message) {
     const emptyDiv = document.createElement('div')
     emptyDiv.className = 'list__empty-message'
-    emptyDiv.textContent = message
+    emptyDiv.dataset.jsEmptyMessage = ''
+    emptyDiv.textContent = `${message}`
     return emptyDiv
   }
 
@@ -132,7 +130,6 @@ class GameCard {
     } else {
       containerElement.removeChild(cardElement)
       this.activeCards.delete(cardId)
-      this.updateDisplay(containerElement)
     }
   }
 
@@ -145,16 +142,15 @@ class GameCard {
       console.log(`Card with ${cardId} already exists`)
     }
 
-    const cardElement = containerElement.createCardElement(cardId)
+    const cardElement = this.createCardElement(cardId)
     containerElement.appendChild(cardElement)
     this.activeCards.set(cardId, cardElement)
-    this.updateDisplay(containerElement)
   }
 
   updateDisplay(containerElement, message) {
     if (!containerElement) return
 
-    const cardItems = containerElement.querySelectorAll(this.selectors.listItemElement)
+    const cardItems = containerElement.querySelectorAll(this.listItemElement)
     const isEmpty = cardItems.length === 0
 
     if (isEmpty) {
@@ -165,9 +161,11 @@ class GameCard {
     } else {
       if (this.emptyMessageElement) {
         containerElement.removeChild(this.emptyMessageElement)
+        this.emptyMessageElement = null
       }
     }
   }
+
 }
 
 export default GameCard

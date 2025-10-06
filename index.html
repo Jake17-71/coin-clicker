@@ -114,9 +114,15 @@
 
   <main class="main container">
     <div class="score-counter">
-      <p>Your Points:
-        <span class="score" data-js-score-display></span>
-      </p>
+      <p>Ваш счет:</p>
+      <div class="score-counter__price">
+        <div class="score-counter__price-image">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+          </svg>
+        </div>
+        <span class="score-counter-digit" data-js-score-display></span>
+      </div>
     </div>
     <div
       class="game"
@@ -144,10 +150,8 @@
       class="button burger-button visible-tablet"
       data-js-burger-button
     >
-
     </button>
     <div class="tabs-overlay" data-js-tabs-overlay>
-
     </div>
     <div
       class="tabs-inner"
@@ -192,7 +196,7 @@
                   id="tab-1"
                   data-js-tabs-button
                 >
-                  Shop
+                  Магазин
                 </button>
             <button
                   class="tabs__nav-item"
@@ -204,7 +208,7 @@
                   id="tab-2"
                   data-js-tabs-button
                 >
-                  Inventory
+                  Инвентарь
                 </button>
             <button
                   class="tabs__nav-item is-active"
@@ -215,7 +219,7 @@
                   id="tab-3"
                   data-js-tabs-button
                 >
-                  Rules
+                  Правила
                 </button>
           </div>
           <div class="tabs__content">
@@ -228,63 +232,22 @@
                   data-js-tabs-content
                 >
                   <h3 class="shop__title h4">
-                    <span>Your Points:
-                       <span class="score" data-js-score-display></span>
-                    </span>
+                    <div class="score-counter">
+                      <p>Ваш счет:</p>
+                      <div class="score-counter__price">
+                        <div class="score-counter__price-image">
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                          </svg>
+                        </div>
+                        <span class="score-counter-digit" data-js-score-display></span>
+                      </div>
+                    </div>
                   </h3>
                   <ul
                     class="list"
                     data-js-shop-list
                   >
-                    <li
-                      class="list__item"
-                      data-js-list-item
-                    >
-                      <div
-                        class="card"
-                        data-js-card
-                      >
-                        <div class="card__image-inner">
-                          <img
-                            class="card__image"
-                            src="/images/1.png"
-                            alt=""
-                            width="96px"
-                            height="96px"
-                            loading="lazy"
-                            data-js-card-image
-                          />
-                        </div>
-                        <h4
-                          class="card__title"
-                          data-js-card-title
-                        >
-                          Item title
-                        </h4>
-                        <div class="card__description">
-                          <div class="card__price">
-                            <div class="card__price-image">
-                              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                              </svg>
-                            </div>
-                            <span
-                              class="card__price-digit"
-                              data-js-card-price-digit
-                            >
-                              123
-                            </span>
-                          </div>
-                          <button
-                            type="button"
-                            class="button button-popup-link card__button"
-                            data-js-card-button-description
-                          >
-                            Description
-                          </button>
-                        </div>
-                      </div>
-                    </li>
                   </ul>
                 </div>
             <div
@@ -296,11 +259,22 @@
                   data-js-tabs-content
                 >
                   <h3 class="inventory__title h4">
-                     <span>Your Points:
-                       <span class="score" data-js-score-display></span>
-                     </span>
+                    <div class="score-counter">
+                      <p>Ваш счет:</p>
+                      <div class="score-counter__price">
+                        <div class="score-counter__price-image">
+                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path>
+                          </svg>
+                        </div>
+                        <span class="score-counter-digit" data-js-score-display></span>
+                      </div>
+                    </div>
                   </h3>
-                  <ul class="list">
+                  <ul
+                    class="list"
+                    data-js-inventory-list
+                  >
 
                   </ul>
                 </div>
@@ -351,188 +325,182 @@
       </ul>
     </div>
   </footer>
-  <div
-    class="popup-container"
-    data-js-popup-container
-    aria-hidden="true"
+
+  <!-- Попап для подтверждения сброса прогресса -->
+  <dialog
+    class="popup popup--confirm"
+    data-js-popup="reset"
+    aria-labelledby="popup-title-reset"
   >
-    <div
-      class="popup-overlay"
-      data-js-popup-overlay
-      aria-hidden="true"
-    >
-      <div
-        class="popup"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="popup-title"
-        aria-describedby="popup-description"
-        tabindex="-1"
-        data-js-popup
-      >
-        <button
-          type="button"
-          class="popup__close"
-          aria-label="Закрыть диалоговое окно"
-          data-js-popup-close
-        >
-        </button>
-        <div
-          class="popup__content"
-          data-js-popup-content
-        >
-          <div class="popup__title">
-            <h2 id="popup-title-confirm">Подтвердите действие</h2>
-          </div>
-          <div class="popup__description">
-            <p>Вы уверены, что хотите сбросить весь прогресс?</p>
-          </div>
-          <div class="popup__buttons-inner">
-            <button
-              type="button"
-              class="popup__button-close"
-              aria-label="Закрыть модальное окно"
-              data-js-popup-close
-            >
-              Нет
-            </button>
-            <button
-              type="button"
-              class="popup__button-close"
-              aria-label="Закрыть модальное окно"
-              data-js-popup-close
-              data-js-popup-clean-data-button
-            >
-              Да
-            </button>
-          </div>
-        </div>
+    <div class="popup__content">
+      <button
+        type="button"
+        class="popup__close"
+        aria-label="Закрыть диалоговое окно"
+        data-js-popup-close
+      ></button>
+
+      <div class="popup__header">
+        <h2 class="popup__title" id="popup-title-reset">
+          Подтвердите действие
+        </h2>
       </div>
-      <div
-        class="popup"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="popup-title"
-        aria-describedby="popup-description"
-        tabindex="-1"
-        data-js-popup
-      >
-        <button
-          type="button"
-          class="popup__close"
-          aria-label="Закрыть диалоговое окно"
-          data-js-popup-close
-        >
-        </button>
-        <div
-          class="popup__content popup__content--card"
-          data-js-popup-content
-        >
-          <div class="popup__image-inner popup__image-inner--card">
-            <img
-              class="popup__image popup__image--card"
-              src="./images/1.png"
-              alt=""
-              width="64px"
-              height="64px"
-              loading="lazy"
-            />
-          </div>
-          <div class="popup__title popup__title--card">
-            <h2 id="popup-title-card-shop">Item Title</h2>
-          </div>
-          <div class="popup__price popup__price--card">
-            <span>Price:</span>
-            <div class="popup__price-image">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <span class="popup__price-digit">123</span>
-          </div>
-          <div class="popup__description popup__description--card">
-            <p data-js-popup-description-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error maiores nihil similique? Odio, pariatur, reiciendis!</p>
-          </div>
-          <div class="popup__buttons-inner popup__buttons-inner--card">
-            <button
-              type="button"
-              class="popup__button-close"
-              aria-label="Закрыть модальное окно"
-              data-js-popup-close
-            >
-              Отмена
-            </button>
-            <button
-              type="button"
-              class="popup__button-close"
-              aria-label="Закрыть модальное окно"
-              data-js-popup-close
-              data-js-popup-clean-data-button
-            >
-              Купить
-            </button>
-          </div>
-        </div>
+
+      <div class="popup__body">
+        <p class="popup__description">
+          Вы уверены, что хотите сбросить весь прогресс?
+        </p>
       </div>
-      <div
-        class="popup"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="popup-title"
-        aria-describedby="popup-description"
-        tabindex="-1"
-        data-js-popup
-      >
+
+      <div class="popup__footer">
         <button
           type="button"
-          class="popup__close"
-          aria-label="Закрыть диалоговое окно"
+          class="popup__button popup__button--secondary"
           data-js-popup-close
         >
+          Нет
         </button>
-        <div
-          class="popup__content popup__content--card"
-          data-js-popup-content
+        <button
+          type="button"
+          class="popup__button popup__button--primary"
+          data-js-popup-confirm="reset"
         >
-          <div class="popup__image-inner popup__image-inner--card">
-            <img
-              class="popup__image popup__image--card"
-              src="./images/1.png"
-              alt=""
-              width="64px"
-              height="64px"
-              loading="lazy"
-            />
-          </div>
-          <div class="popup__title popup__title--card">
-            <h2 id="popup-title-card-inventory">Item Title</h2>
-          </div>
-          <div class="popup__price popup__price--card">
-            <span>Price:</span>
-            <div class="popup__price-image">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <span class="popup__price-digit">123</span>
-          </div>
-          <div class="popup__description popup__description--card">
-            <p data-js-popup-description-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error maiores nihil similique? Odio, pariatur, reiciendis!</p>
-          </div>
-          <div class="popup__buttons-inner popup__buttons-inner--card">
-            <button
-              type="button"
-              class="popup__button-close"
-              aria-label="Закрыть модальное окно"
-              data-js-popup-close
-            >
-              Закрыть
-            </button>
-          </div>
-        </div>
+          Да
+        </button>
       </div>
     </div>
-  </div>
+  </dialog>
+
+  <!-- Попап для карточки в магазине -->
+  <dialog
+    class="popup popup--card"
+    data-js-popup="shop"
+    aria-labelledby="popup-title-shop"
+  >
+    <div class="popup__content popup__content--card">
+      <button
+        type="button"
+        class="popup__close"
+        aria-label="Закрыть диалоговое окно"
+        data-js-popup-close
+      ></button>
+
+      <div class="popup__card-image">
+        <img
+          class="popup__image"
+          src="./images/1.png"
+          alt=""
+          width="120"
+          height="120"
+          loading="lazy"
+          data-js-popup-image
+        />
+      </div>
+
+      <div class="popup__card-header">
+        <h2 class="popup__title" id="popup-title-shop" data-js-popup-title>
+          Item Title
+        </h2>
+      </div>
+
+      <div class="popup__card-price">
+        <span class="popup__price-label">Price:</span>
+        <div class="popup__price">
+          <div class="popup__price-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <span class="popup__price-value" data-js-popup-price>123</span>
+        </div>
+      </div>
+
+      <div class="popup__card-body">
+        <p class="popup__description" data-js-popup-description>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error maiores nihil similique? Odio, pariatur, reiciendis!
+        </p>
+      </div>
+
+      <div class="popup__footer popup__footer--card">
+        <button
+          type="button"
+          class="popup__button popup__button--secondary"
+          data-js-popup-close
+        >
+          Отмена
+        </button>
+        <button
+          type="button"
+          class="popup__button popup__button--primary"
+          data-js-popup-confirm="buy"
+        >
+          Купить
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Попап для карточки в инвентаре -->
+  <dialog
+    class="popup popup--card"
+    data-js-popup="inventory"
+    aria-labelledby="popup-title-inventory"
+  >
+    <div class="popup__content popup__content--card">
+      <button
+        type="button"
+        class="popup__close"
+        aria-label="Закрыть диалоговое окно"
+        data-js-popup-close
+      ></button>
+
+      <div class="popup__card-image">
+        <img
+          class="popup__image"
+          src="./images/1.png"
+          alt=""
+          width="120"
+          height="120"
+          loading="lazy"
+          data-js-popup-image
+        />
+      </div>
+
+      <div class="popup__card-header">
+        <h2 class="popup__title" id="popup-title-inventory" data-js-popup-title>
+          Item Title
+        </h2>
+      </div>
+
+      <div class="popup__card-price">
+        <span class="popup__price-label">Price:</span>
+        <div class="popup__price">
+          <div class="popup__price-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <span class="popup__price-value" data-js-popup-price>123</span>
+        </div>
+      </div>
+
+      <div class="popup__card-body">
+        <p class="popup__description" data-js-popup-description>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error maiores nihil similique? Odio, pariatur, reiciendis!
+        </p>
+      </div>
+
+      <div class="popup__footer popup__footer--card">
+        <button
+          type="button"
+          class="popup__button popup__button--primary"
+          data-js-popup-close
+        >
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </dialog>
 
 </body>
 

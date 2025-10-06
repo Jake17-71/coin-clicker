@@ -1,6 +1,8 @@
 import GameScoreLogic from './gameLogic/GameScoreLogic.js'
 import GameClickHandler from './gameLogic/GameClickHandler.js'
 import GameStorageLogic from './gameLogic/GameStorageLogic.js'
+import GameShop from './cards/GameShop.js'
+import GameInventory from './cards/GameInventory.js'
 
 class GameMain {
 
@@ -8,11 +10,15 @@ class GameMain {
     this.scoreLogic = null
     this.clickHandler = null
     this.storageLogic = null
+    this.gameShop = null
+    this.gameInventory = null
     this.init()
   }
 
   init() {
     this.startNewGame()
+    this.gameShop = new GameShop(this)
+    this.gameInventory = new GameInventory(this)
     this.clickHandler = new GameClickHandler(this.scoreLogic, this.storageLogic)
     this.console()
   }

@@ -10,11 +10,52 @@
 
 .score-counter {
   display: flex;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   grid-area: score-counter;
 
-  @include fluid-text(24, 18);
+  @include fluid-text(32, 18);
 
   font-weight: 400;
+
+  p {
+    margin-block: auto;
+  }
+
+  &__price {
+    @include flex-center();
+    gap: 6px;
+    padding: 6px 6px;
+    background-color: var(--bg-dark);
+    border-radius: var(--border-radius-xxs);
+    transition: background-color var(--transition-change-theme);
+
+    @include laptop {
+      gap: 4px;
+    }
+
+    @include tablet {
+      padding: 3px;
+    }
+
+    &-image {
+      @include square(20px);
+      @include flex-center();
+
+      @include laptop {
+        @include square(15px);
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-digit {
+      @include fluid-text(18, 16);
+      color: var(--text);
+    }
+  }
 }
