@@ -1,11 +1,10 @@
 class GameScoreLogic {
-
   selectors = {
-    displaySelector: `[data-js-score-display]`
+    displaySelector: '[data-js-score-display]'
   }
 
   gameConfig = {
-    score: null,
+    score: 0,
     clickPower: 1,
     passiveScore: 0,
     criticalClickChance: 0,
@@ -21,63 +20,62 @@ class GameScoreLogic {
     this.displayElements = document.querySelectorAll(this.selectors.displaySelector)
   }
 
-  addScore () {
-
-    if (this.isCriticalClickActivate() === true) {
-      this.score += this.clickPower * this.criticalMultiplier
-    } else this.score += this.clickPower
-
+  addScore() {
+    const multiplier = this.isCriticalClickActivate() ? this.criticalMultiplier : 1
+    this.score += this.clickPower * multiplier
     this.updateDisplay()
   }
 
-  updateDisplay () {
+  updateDisplay() {
     this.displayElements.forEach(element => {
       element.textContent = this.score
     })
   }
 
-  isEnoughScore (cardPrice) {
-    return this.score >= cardPrice
+  showAlert(state) {
+    console.log(state ? 'Success Alert' : 'Error Alert', state)
   }
 
-  spendScore (cardPrice) {
+  isEnoughScore(cardPrice) {
+    if (this.score < cardPrice) {
+      this.showAlert(false)
+      return false
+    }
+    return true
+  }
+
+  spendScore(cardPrice) {
     this.score -= cardPrice
     this.updateDisplay()
   }
 
-  addClickPower (amount = 2) {
+  addClickPower(amount = 2) {
     this.clickPower *= amount
   }
 
-  addPassiveScore (amount = 100) {
+  addPassiveScore(amount = 100) {
     this.passiveScore += amount
   }
 
-  setPassiveIncome () {
+  setPassiveIncome() {
     setInterval(() => {
       if (this.passiveScore > 0) {
         this.score += this.passiveScore
-        this.updateDisplay(this.displayElements)
+        this.updateDisplay()
       }
     }, 5000)
   }
 
-  addCriticalClickChance () {
+  addCriticalClickChance() {
     this.criticalClickChance += 10
   }
 
-  isCriticalClickActivate () {
-    const randomNumber = this.getRandomNumber()
-
-    if (this.criticalClickChance === 0 ) return false
-    else return randomNumber <= this.criticalClickChance;
+  isCriticalClickActivate() {
+    if (this.criticalClickChance === 0) return false
+    return Math.random() * 100 <= this.criticalClickChance
   }
 
-  getRandomNumber () {
-    return Math.random() * 100
-  }
-
-  loadState (gameData) {
+  loadState(gameData) {
     this.score = gameData.score
     this.clickPower = gameData.clickPower
     this.passiveScore = gameData.passiveScore
