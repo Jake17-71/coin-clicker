@@ -76,7 +76,8 @@ class GameClickHandler {
   }
 
   onDescriptionButtonClick = () => {
-    console.log("BLABLABLA")
+    document.querySelector(`[data-js-card-button-description]`).addEventListener('click',
+      evt => document.querySelector(`[data-js-popup="shop"]`).showModal())
   }
 
   bindEvents() {

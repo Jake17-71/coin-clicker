@@ -10,14 +10,46 @@ class GameShop extends GameCardsMain {
     super(scoreLogic, gameMain)
     this.containerShopElement = document.querySelector(this.selectors.shop)
     this.containerInventoryElement = document.querySelector(this.selectors.inventory)
+    this.gameMain = gameMain
     this.initShop()
   }
 
   buyCard(cardId) {
-    this.whichCardBought(cardId)
+    if (this.gameMain.purchasedCards.has(cardId)) return
+
+    const card = this.getCardConfig(cardId)
+
+    if (!this.scoreLogic.isEnoughScore(card.price)) {
+      return
+    }
+
+    this.scoreLogic.spendScore(card.price)
+    this.scoreLogic.showAlert(true)
+    this.gameMain.purchasedCards.add(cardId)
+
+    this.applyCardEffect(cardId)
+
     this.removeCard(cardId, this.containerShopElement)
     this.addCard(cardId, this.containerInventoryElement)
-    this.scoreLogic.purchasedCards.push(cardId)
+    this.updateDisplay(this.containerInventoryElement, 'Вы не купили улучшений :(')
+  }
+
+  applyCardEffect(cardId) {
+    switch (cardId) {
+      case 'card-1':
+        this.scoreLogic.addClickPower()
+        break
+      case 'card-2':
+        this.scoreLogic.addPassiveScore()
+        break
+      case 'card-3':
+        this.scoreLogic.addCriticalClickChance()
+        break
+    }
+  }
+
+  abc () {
+    this.buyCard('card-1')
   }
 
   initShop() {
@@ -30,6 +62,10 @@ class GameShop extends GameCardsMain {
     })
 
     this.updateDisplay(this.containerShopElement, 'В магазине нет улучшений :(')
+
+    document.querySelector(`[data-js-popup-confirm="buy"]`).addEventListener('click', evt => {
+      this.abc()
+    })
   }
 }
 

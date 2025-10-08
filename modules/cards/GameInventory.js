@@ -7,16 +7,14 @@ class GameInventory extends GameCardsMain {
 
   constructor(scoreLogic, gameMain) {
     super(scoreLogic, gameMain)
-    this.containerElement = document.querySelector(this.selectors.inventory)
+    this.containerInventoryElement = document.querySelector(this.selectors.inventory)
     this.initInventory()
   }
 
   initInventory() {
     this.gameMain.purchasedCards.forEach(cardId => {
-      this.addCard(cardId, this.containerElement)
+      this.addCard(cardId, this.containerInventoryElement)
     })
-
-    this.updateDisplay(this.containerElement, 'Вы не купили улучшений :(')
   }
 }
 

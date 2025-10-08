@@ -4,7 +4,7 @@ class GameCardsMain {
       id: 'card-1',
       image: '/images/1.png',
       title: 'Click Power',
-      price: 100,
+      price: 10,
       description: 'Увеличивает силу клика в 2 раза',
     },
     'card-2': {
@@ -154,37 +154,6 @@ class GameCardsMain {
       containerElement.appendChild(messageElement)
     } else if (!isEmpty && existingMessage) {
       containerElement.removeChild(existingMessage)
-    }
-  }
-
-  whichCardBought(cardId) {
-    const card = this.getCardConfig(cardId)
-    if (!card) {
-      console.log(`Card with ${cardId} not found`)
-      return
-    }
-
-    const cardPrice = card.price
-
-    switch (cardId) {
-      case 'card-1':
-        if (this.scoreLogic.isEnoughScore(cardPrice)) {
-          this.scoreLogic.addClickPower()
-          this.scoreLogic.spendScore(cardPrice)
-        }
-        break
-      case 'card-2':
-        if (this.scoreLogic.isEnoughScore(cardPrice)) {
-          this.scoreLogic.addPassiveScore()
-          this.scoreLogic.spendScore(cardPrice)
-        }
-        break
-      case 'card-3':
-        if (this.scoreLogic.isEnoughScore(cardPrice)) {
-          this.scoreLogic.addCriticalClickChance()
-          this.scoreLogic.spendScore(cardPrice)
-        }
-        break
     }
   }
 }
