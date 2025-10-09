@@ -15,6 +15,8 @@ class GameInventory extends GameCardsMain {
     this.gameMain.purchasedCards.forEach(cardId => {
       this.addCard(cardId, this.containerInventoryElement)
     })
+
+    this.toggleEmptyMessage(this.containerInventoryElement)
   }
 }
 

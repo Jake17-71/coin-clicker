@@ -31,7 +31,9 @@ class GameShop extends GameCardsMain {
 
     this.removeCard(cardId, this.containerShopElement)
     this.addCard(cardId, this.containerInventoryElement)
-    this.updateDisplay(this.containerInventoryElement, 'Вы не купили улучшений :(')
+
+    this.toggleEmptyMessage(this.containerShopElement)
+    this.toggleEmptyMessage(this.containerInventoryElement)
   }
 
   applyCardEffect(cardId) {
@@ -61,7 +63,7 @@ class GameShop extends GameCardsMain {
       }
     })
 
-    this.updateDisplay(this.containerShopElement, 'В магазине нет улучшений :(')
+    this.toggleEmptyMessage(this.containerShopElement)
 
     document.querySelector(`[data-js-popup-confirm="buy"]`).addEventListener('click', evt => {
       this.abc()

@@ -32,6 +32,7 @@ class GameCardsMain {
     this.scoreLogic = scoreLogic
     this.gameMain = gameMain
     this.listItemElement = this.selectors.listItemSelector
+    this.emptyMessageElement = this.selectors.emptyMessageSelector
     this.activeCards = new Map()
   }
 
@@ -142,18 +143,22 @@ class GameCardsMain {
     }
   }
 
-  updateDisplay(containerElement, emptyMessage) {
+  toggleEmptyMessage(containerElement) {
     if (!containerElement) return
 
     const cardItems = containerElement.querySelectorAll(this.listItemElement)
-    const isEmpty = cardItems.length === 0
-    const existingMessage = containerElement.querySelector(this.selectors.emptyMessageSelector)
+    const emptyMessage = containerElement.querySelector(this.emptyMessageElement)
 
-    if (isEmpty && !existingMessage) {
-      const messageElement = this.createEmptyMessage(emptyMessage)
-      containerElement.appendChild(messageElement)
-    } else if (!isEmpty && existingMessage) {
-      containerElement.removeChild(existingMessage)
+    if (!emptyMessage) {
+      console.log('Empty message element not found in container')
+      return
+    }
+
+    const hasCards = cardItems.length > 0
+    if (hasCards === true) {
+      emptyMessage.style.display = 'none'
+    } else {
+      emptyMessage.style.display = 'block'
     }
   }
 }
