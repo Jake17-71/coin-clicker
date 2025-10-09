@@ -15,7 +15,10 @@ class GameShop extends GameCardsMain {
   }
 
   buyCard(cardId) {
-    if (this.gameMain.purchasedCards.has(cardId)) return
+    if (this.gameMain.purchasedCards.has(cardId)) {
+      this.scoreLogic.showAlert('warning', 'Этот предмет уже куплен')
+      return
+    }
 
     const card = this.getCardConfig(cardId)
 
@@ -24,7 +27,7 @@ class GameShop extends GameCardsMain {
     }
 
     this.scoreLogic.spendScore(card.price)
-    this.scoreLogic.showAlert(true)
+    this.scoreLogic.showAlert('success', `${card.title} успешно куплен!`)
     this.gameMain.purchasedCards.add(cardId)
 
     this.applyCardEffect(cardId)

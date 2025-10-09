@@ -3,10 +3,12 @@ import GameClickHandler from './gameLogic/GameClickHandler.js'
 import GameStorageLogic from './gameLogic/GameStorageLogic.js'
 import GameShop from './cards/GameShop.js'
 import GameInventory from './cards/GameInventory.js'
+import AlertCollection from './AlertCollection.js'
 
 class GameMain {
   constructor() {
     this.purchasedCards = new Set()
+    this.alertCollection = null
     this.scoreLogic = null
     this.storageLogic = null
     this.clickHandler = null
@@ -17,6 +19,7 @@ class GameMain {
   }
 
   init() {
+    this.alertCollection = new AlertCollection()
     this.startNewGame()
     this.gameShop = new GameShop(this.scoreLogic, this)
     this.gameInventory = new GameInventory(this.scoreLogic, this)
@@ -25,7 +28,7 @@ class GameMain {
   }
 
   startNewGame() {
-    this.scoreLogic = new GameScoreLogic(0)
+    this.scoreLogic = new GameScoreLogic(0, this.alertCollection)
     this.storageLogic = new GameStorageLogic(this.scoreLogic, this)
     this.storageLogic.loadStorage()
     this.storageLogic.startAutoSave()
@@ -43,7 +46,11 @@ class GameMain {
     this.scoreLogic.criticalClickChance = this.scoreLogic.gameConfig.criticalClickChance
     this.scoreLogic.updateDisplay()
 
-    location.reload()
+    this.alertCollection.showInfo('Прогресс сброшен')
+
+    setTimeout(() => {
+      location.reload()
+    }, 3000)
   }
 
   logGameState() {

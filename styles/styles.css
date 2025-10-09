@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 /**
   Нормализация блочной модели
  */
@@ -171,13 +172,6 @@ svg * {
     scroll-behavior: auto !important;
   }
 }
-@font-face {
-  font-family: "Kumbh Sans";
-  src: url("../fonts/KumbhSans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 :root {
   --bg-dark: oklch(0.1 0.005 20);
   --bg: oklch(0.15 0.005 20);
@@ -224,7 +218,7 @@ svg * {
   --border-radius-xxs: 0.3125rem;
   --border-radius-xxxs: 0.25rem;
   --input-height: 3rem;
-  --font-family-base: "Manrope";
+  --font-family-base: "Space Grotesk", sans-serif;
   --container-width: clamp(80rem, 0rem + 100vw, 100rem);
   --container-padding-x: 1rem;
   --transition-duration: 0.2s;
@@ -287,6 +281,7 @@ body {
   font-family: var(--font-family-base), sans-serif;
   color: var(--text);
   background-color: var(--bg);
+  font-weight: 500;
   height: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -1371,6 +1366,7 @@ a[class] {
 }
 
 .popup {
+  position: relative;
   padding: 0;
   margin: auto;
   border: none;
@@ -1681,6 +1677,137 @@ a[class] {
   .popup__button {
     width: 100%;
   }
+}
+.alert {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 18.75rem;
+  max-width: 25rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--bg-light);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(calc(100% + 1.5rem));
+  transition: all var(--transition-duration) ease-in-out;
+}
+@media (width <= 47.9375rem) {
+  .alert {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    min-width: auto;
+    max-width: none;
+    transform: translateY(100%);
+  }
+}
+.alert.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+@media (width <= 47.9375rem) {
+  .alert.is-visible {
+    transform: translateY(0);
+  }
+}
+.alert--success {
+  border-color: var(--success);
+}
+.alert--error {
+  border-color: var(--danger);
+}
+.alert--info {
+  border-color: var(--info);
+}
+.alert--warning {
+  border-color: var(--warning);
+}
+
+.alert__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.alert__icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.alert__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.alert--success .alert__icon {
+  color: var(--success);
+}
+.alert--error .alert__icon {
+  color: var(--danger);
+}
+.alert--info .alert__icon {
+  color: var(--info);
+}
+.alert--warning .alert__icon {
+  color: var(--warning);
+}
+
+.alert__message {
+  font-size: clamp(0.875rem, 0.8347107438rem + 0.1652892562vw, 1rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.alert__close {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-duration);
+}
+.alert__close:focus {
+  outline: none;
+  box-shadow: none;
+}
+.alert__close:focus-visible {
+  outline: 0.125rem dashed var(--text);
+  outline-offset: 0.25rem;
+  transition-duration: 0s !important;
+}
+.alert__close:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+@media (any-hover: hover) {
+  .alert__close:hover {
+    color: var(--text);
+  }
+}
+@media (any-hover: none) {
+  .alert__close:active {
+    color: var(--text);
+  }
+}
+.alert__close svg {
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -11,13 +11,14 @@ class GameScoreLogic {
     criticalMultiplier: 2,
   }
 
-  constructor(initialScore = 0) {
+  constructor(initialScore = 0, alertInstance = null) {
     this.score = initialScore
     this.clickPower = this.gameConfig.clickPower
     this.passiveScore = this.gameConfig.passiveScore
     this.criticalClickChance = this.gameConfig.criticalClickChance
     this.criticalMultiplier = this.gameConfig.criticalMultiplier
     this.displayElements = document.querySelectorAll(this.selectors.displaySelector)
+    this.alertInstance = alertInstance
   }
 
   addScore() {
@@ -32,13 +33,33 @@ class GameScoreLogic {
     })
   }
 
-  showAlert(state) {
-    console.log(state ? 'Success Alert' : 'Error Alert', state)
+  showAlert(type, message) {
+    if (!this.alertInstance) {
+      console.log('Alert instance not provided')
+      return
+    }
+
+    switch (type) {
+      case 'success':
+        this.alertInstance.showSuccess(message)
+        break
+      case 'error':
+        this.alertInstance.showError(message)
+        break
+      case 'info':
+        this.alertInstance.showInfo(message)
+        break
+      case 'warning':
+        this.alertInstance.showWarning(message)
+        break
+      default:
+        this.alertInstance.showInfo(message)
+    }
   }
 
   isEnoughScore(cardPrice) {
     if (this.score < cardPrice) {
-      this.showAlert(false)
+      this.showAlert('error', 'Недостаточно средств для покупки')
       return false
     }
     return true
