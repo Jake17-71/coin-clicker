@@ -53,10 +53,6 @@ class GameShop extends GameCardsMain {
     }
   }
 
-  abc () {
-    this.buyCard('card-1')
-  }
-
   initShop() {
     const allCardIds = Object.keys(this.cardsConfig)
 
@@ -67,10 +63,6 @@ class GameShop extends GameCardsMain {
     })
 
     this.toggleEmptyMessage(this.containerShopElement)
-
-    document.querySelector(`[data-js-popup-confirm="buy"]`).addEventListener('click', evt => {
-      this.abc()
-    })
   }
 }
 

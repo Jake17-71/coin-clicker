@@ -11,14 +11,14 @@ class GameCardsMain {
       id: 'card-2',
       image: '/images/2.png',
       title: 'Passive Income',
-      price: 1000,
+      price: 100,
       description: 'Добавляет пассивный доход +100 каждые 5 секунд',
     },
     'card-3': {
       id: 'card-3',
       image: '/images/3.png',
       title: 'Critical Click',
-      price: 500,
+      price: 100,
       description: 'Увеличивает шанс критического клика на 10%',
     }
   }

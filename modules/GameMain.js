@@ -4,6 +4,7 @@ import GameStorageLogic from './gameLogic/GameStorageLogic.js'
 import GameShop from './cards/GameShop.js'
 import GameInventory from './cards/GameInventory.js'
 import AlertCollection from './AlertCollection.js'
+import ModalsMain from './Modals.js'
 
 class GameMain {
   constructor() {
@@ -14,6 +15,7 @@ class GameMain {
     this.clickHandler = null
     this.gameShop = null
     this.gameInventory = null
+    this.modals = null
 
     this.init()
   }
@@ -23,6 +25,7 @@ class GameMain {
     this.startNewGame()
     this.gameShop = new GameShop(this.scoreLogic, this)
     this.gameInventory = new GameInventory(this.scoreLogic, this)
+    this.modals = new ModalsMain(this.gameShop, this.gameShop, this)
     this.clickHandler = new GameClickHandler(this.scoreLogic, this)
     this.logGameState()
   }

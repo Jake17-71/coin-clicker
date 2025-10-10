@@ -1,11 +1,6 @@
 class GameClickHandler {
   selectors = {
     buttonSelector: '[data-js-click-object]',
-    buttonResetSelector: '[data-js-reset-button]',
-    resetPopupSelector: '[data-js-popup="reset"]',
-    confirmResetSelector: '[data-js-popup-confirm="reset"]',
-    popupCloseButtonSelector: '[data-js-popup-close]',
-    cardDescriptionButtonSelector: '[data-js-card-button-description]',
   }
 
   particlesConfig = {
@@ -16,12 +11,6 @@ class GameClickHandler {
 
   constructor(scoreLogic, gameMain) {
     this.buttonElement = document.querySelector(this.selectors.buttonSelector)
-    this.resetButtonElement = document.querySelector(this.selectors.buttonResetSelector)
-    this.resetPopupElement = document.querySelector(this.selectors.resetPopupSelector)
-    this.confirmResetElement = document.querySelector(this.selectors.confirmResetSelector)
-    this.popupCloseButtonElements = document.querySelectorAll(this.selectors.popupCloseButtonSelector)
-    this.cardDescriptionButtonElement = document.querySelector(this.selectors.cardDescriptionButtonSelector)
-
     this.scoreLogic = scoreLogic
     this.gameMain = gameMain
 
@@ -62,32 +51,8 @@ class GameClickHandler {
     this.boostParticleSpeed()
   }
 
-  onResetButtonClick = () => {
-    this.resetPopupElement?.showModal()
-  }
-
-  onConfirmReset = () => {
-    this.gameMain.resetGame()
-    this.resetPopupElement?.close()
-  }
-
-  onClosePopupButtonClick = () => {
-    this.resetPopupElement?.close()
-  }
-
-  onDescriptionButtonClick = () => {
-    document.querySelector(`[data-js-card-button-description]`).addEventListener('click',
-      evt => document.querySelector(`[data-js-popup="shop"]`).showModal())
-  }
-
   bindEvents() {
     this.buttonElement?.addEventListener('click', this.onButtonClick)
-    this.cardDescriptionButtonElement?.addEventListener('click', this.onDescriptionButtonClick)
-    this.popupCloseButtonElements?.forEach((element) => {
-      element.addEventListener('click', this.onClosePopupButtonClick)
-    })
-    this.resetButtonElement?.addEventListener('click', this.onResetButtonClick)
-    this.confirmResetElement?.addEventListener('click', this.onConfirmReset)
   }
 }
 

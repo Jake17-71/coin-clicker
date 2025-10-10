@@ -10,6 +10,3 @@ new ParticleCollection()
 new TabsCollection()
 new BurgerButtonCollection()
 new GameMain()
-
-const btn = document.querySelector(`[data-js-card-button-description]`)
-const dialog = document.querySelector(`[data-js-popup='shop']`)
