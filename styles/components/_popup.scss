@@ -202,6 +202,10 @@
     margin: 0;
     line-height: 1.6;
     color: var(--text-muted);
+
+    &--centered-text {
+      text-align: center;
+    }
   }
 
   &__footer {
@@ -225,6 +229,7 @@
     border-radius: var(--border-radius-m);
     background-color: var(--bg-light);
     color: var(--text);
+    white-space: nowrap;
     cursor: pointer;
     transition: background-color var(--transition-duration),
     color var(--transition-duration),

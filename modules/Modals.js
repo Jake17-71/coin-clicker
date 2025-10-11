@@ -49,6 +49,40 @@ class ModalsMain {
       </div>
     `,
 
+    firstLoad: () => `
+      <div class="popup__content">
+        <button
+          type="button"
+          class="popup__close"
+          aria-label="Закрыть диалоговое окно"
+          data-js-popup-close
+        ></button>
+  
+        <div class="popup__header">
+          <h2 class="popup__title" id="popup-title-reset">
+            Привет!
+          </h2>
+        </div>
+  
+        <div class="popup__body">
+          <p class="popup__description popup__description--centered-text">
+            Цель данной игры достигнуть 1.000.000 очков! <br><br>
+            Более подробно ознакомится с механиками игры можно во вкладке "Правила". <br>
+          </p>
+        </div>
+  
+        <div class="popup__footer">
+          <button
+            type="button"
+            class="popup__button popup__button--primary"
+            data-js-popup-close
+          >
+            Понятно
+          </button>
+        </div>
+      </div>
+    `,
+
     shop: (config) => `
       <div class="popup__content popup__content--card">
         <button
@@ -166,7 +200,48 @@ class ModalsMain {
           </button>
         </div>
       </div>
-    `
+    `,
+
+    victory: () => `
+      <div class="popup__content">
+        <button
+          type="button"
+          class="popup__close"
+          aria-label="Закрыть диалоговое окно"
+          data-js-popup-close
+        ></button>
+    
+        <div class="popup__header">
+          <h2 class="popup__title" id="popup-title-victory">
+            Поздравляю!
+          </h2>
+        </div>
+    
+        <div class="popup__body">
+          <p class="popup__description popup__description--centered-text">
+            Вы достигли цели в 1.000.000 очков!<br><br>
+            Вы можете продолжить накапливать очки или начать новую игру.
+          </p>
+        </div>
+    
+        <div class="popup__footer">
+          <button
+            type="button"
+            class="popup__button popup__button--secondary"
+            data-js-popup-close
+          >
+            Продолжить игру
+          </button>
+          <button
+            type="button"
+            class="popup__button popup__button--primary"
+            data-js-popup-confirm="reset"
+          >
+            Начать заново
+          </button>
+        </div>
+      </div>
+    `,
   }
 
   constructor(gameCardsMainInstance, gameShopInstance, gameMainInstance) {
@@ -186,13 +261,13 @@ class ModalsMain {
   createPopup(cardId, place) {
     const config = this.gameCardsMain.getCardConfig(cardId)
 
-    if (!config && place !== 'reset') {
+    if (!config && place !== 'reset' && place !== 'firstLoad' && place !== 'victory') {
       console.error(`Card config not found for ${cardId}`)
       return null
     }
 
     const popup = document.createElement('dialog')
-    popup.className = `popup popup--${place === 'reset' ? 'confirm' : 'card'}`
+    popup.className = `popup popup--${['reset', 'firstLoad', 'victory'].includes(place) ? place : 'card'}`
     popup.dataset.jsPopup = place
     popup.dataset.jsCardId = cardId || ''
 
@@ -201,7 +276,6 @@ class ModalsMain {
 
     return popup
   }
-
   openPopup(cardId, place) {
     this.closeActivePopup()
 
@@ -214,7 +288,7 @@ class ModalsMain {
     this.currentCardId = cardId
     this.currentPlace = place
 
-    this.bindPopupEvents(popup)
+    this.bindPopupEvents(popup, place)
 
     popup.showModal()
   }
@@ -241,7 +315,7 @@ class ModalsMain {
     this.closeActivePopup()
   }
 
-  bindPopupEvents(popup) {
+  bindPopupEvents(popup, place) {
     const closeButtons = popup.querySelectorAll(this.selectors.popupClose)
     closeButtons.forEach(btn => {
       btn.addEventListener('click', () => this.closeActivePopup())
@@ -253,19 +327,23 @@ class ModalsMain {
       btn.addEventListener('click', () => this.handleConfirm(action))
     })
 
-    popup.addEventListener('click', (evt) => {
-      const rect = popup.getBoundingClientRect()
-      const isClickOutside = (
-        evt.clientX < rect.left ||
-        evt.clientX > rect.right ||
-        evt.clientY < rect.top ||
-        evt.clientY > rect.bottom
-      )
+    const isVictoryPopup = place === 'victory'
 
-      if (isClickOutside) {
-        this.closeActivePopup()
-      }
-    })
+    if (!isVictoryPopup) {
+      popup.addEventListener('click', (evt) => {
+        const rect = popup.getBoundingClientRect()
+        const isClickOutside = (
+          evt.clientX < rect.left ||
+          evt.clientX > rect.right ||
+          evt.clientY < rect.top ||
+          evt.clientY > rect.bottom
+        )
+
+        if (isClickOutside) {
+          this.closeActivePopup()
+        }
+      })
+    }
   }
 
   onCardDescriptionClick = (evt) => {
@@ -285,6 +363,14 @@ class ModalsMain {
 
   onResetButtonClick = () => {
     this.openPopup(null, 'reset')
+  }
+
+  showFirstLoadPopup() {
+    this.openPopup(null, 'firstLoad')
+  }
+
+  showVictoryPopup() {
+    this.openPopup(null, 'victory')
   }
 
   bindEvents() {

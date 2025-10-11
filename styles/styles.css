@@ -1566,6 +1566,9 @@ a[class] {
   line-height: 1.6;
   color: var(--text-muted);
 }
+.popup__description--centered-text {
+  text-align: center;
+}
 .popup__footer {
   display: flex;
   align-items: center;
@@ -1585,6 +1588,7 @@ a[class] {
   border-radius: var(--border-radius-m);
   background-color: var(--bg-light);
   color: var(--text);
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color var(--transition-duration), color var(--transition-duration), transform var(--transition-duration);
 }

@@ -26,17 +26,27 @@ class GameMain {
     this.gameShop = new GameShop(this.scoreLogic, this)
     this.gameInventory = new GameInventory(this.scoreLogic, this)
     this.modals = new ModalsMain(this.gameShop, this.gameShop, this)
+    this.scoreLogic.modalsInstance = this.modals
     this.clickHandler = new GameClickHandler(this.scoreLogic, this)
+    this.checkFirstVisit()
     this.logGameState()
   }
 
   startNewGame() {
-    this.scoreLogic = new GameScoreLogic(0, this.alertCollection)
+    this.scoreLogic = new GameScoreLogic(0, this.alertCollection, null, null)
     this.storageLogic = new GameStorageLogic(this.scoreLogic, this)
+    this.scoreLogic.storageInstance = this.storageLogic
     this.storageLogic.loadStorage()
     this.storageLogic.startAutoSave()
     this.scoreLogic.updateDisplay()
     this.scoreLogic.setPassiveIncome()
+  }
+
+  checkFirstVisit() {
+    if (this.storageLogic.isFirstVisit()) {
+      this.modals.showFirstLoadPopup()
+      this.storageLogic.markAsVisited()
+    }
   }
 
   resetGame() {
@@ -47,13 +57,14 @@ class GameMain {
     this.scoreLogic.clickPower = this.scoreLogic.gameConfig.clickPower
     this.scoreLogic.passiveScore = this.scoreLogic.gameConfig.passiveScore
     this.scoreLogic.criticalClickChance = this.scoreLogic.gameConfig.criticalClickChance
+    this.scoreLogic.resetVictoryFlag()
     this.scoreLogic.updateDisplay()
 
     this.alertCollection.showInfo('Прогресс сброшен')
 
     setTimeout(() => {
       location.reload()
-    }, 3000)
+    }, 2000)
   }
 
   logGameState() {
@@ -62,7 +73,9 @@ class GameMain {
       passiveScore: this.scoreLogic.passiveScore,
       criticalClickChance: this.scoreLogic.criticalClickChance,
       criticalMultiplier: this.scoreLogic.criticalMultiplier,
-      purchasedCards: Array.from(this.purchasedCards)
+      purchasedCards: Array.from(this.purchasedCards),
+      victoryAchieved: this.storageLogic.isVictoryAchieved(),
+      currentScore: this.scoreLogic.score
     })
   }
 }

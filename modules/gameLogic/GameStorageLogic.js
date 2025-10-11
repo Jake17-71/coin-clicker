@@ -7,6 +7,8 @@ class GameStorageLogic {
     this.scoreLogic = scoreLogic
     this.gameMain = gameMain
     this.storageKey = 'game-data'
+    this.firstVisitKey = 'game-first-visit'
+    this.victoryAchievedKey = 'game-victory'
   }
 
   saveData() {
@@ -42,6 +44,8 @@ class GameStorageLogic {
   clearStorage() {
     try {
       localStorage.removeItem(this.storageKey)
+      localStorage.removeItem(this.firstVisitKey)
+      localStorage.removeItem(this.victoryAchievedKey)
     } catch (error) {
       console.error('Clear error:', error)
     }
@@ -51,6 +55,41 @@ class GameStorageLogic {
     setInterval(() => {
       this.saveData()
     }, this.autoSaveConfig.autoSaveTime)
+  }
+
+  isFirstVisit() {
+    try {
+      const visited = localStorage.getItem(this.firstVisitKey)
+      return visited === null
+    } catch (error) {
+      console.error('First visit check error:', error)
+      return false
+    }
+  }
+
+  markAsVisited() {
+    try {
+      localStorage.setItem(this.firstVisitKey, 'true')
+    } catch (error) {
+      console.error('Mark visited error:', error)
+    }
+  }
+
+  isVictoryAchieved() {
+    try {
+      const victoryAchieved = localStorage.getItem(this.victoryAchievedKey)
+      return victoryAchieved !== null
+    } catch (error) {
+      console.error('Victory Check error:', error)
+    }
+  }
+
+  markVictoryAchieved() {
+    try {
+      localStorage.setItem(this.victoryAchievedKey, 'true')
+    } catch (error) {
+      console.error('Mark visited error:', error)
+    }
   }
 }
 
