@@ -76,6 +76,7 @@
     color: var(--text);
     display: flex;
     align-items: center;
+    margin-block: auto;
     justify-content: center;
     transition: color var(--transition-change-theme);
   }

@@ -8,6 +8,14 @@ class ModalsMain {
     resetButton: '[data-js-reset-button]',
   }
 
+  confettiConfig = {
+    duration: 5000,
+    startVelocity: 30,
+    spread: 360,
+    ticks: 60,
+    zIndex: 0,
+  }
+
   popupTemplates = {
     reset: () => `
       <div class="popup__content">
@@ -213,7 +221,7 @@ class ModalsMain {
     
         <div class="popup__header">
           <h2 class="popup__title" id="popup-title-victory">
-            Поздравляю!
+            Поздравляем!
           </h2>
         </div>
     
@@ -251,6 +259,7 @@ class ModalsMain {
     this.activePopup = null
     this.currentCardId = null
     this.currentPlace = null
+    this.confettiInterval = null
 
     this.shopListElement = document.querySelector(this.selectors.shopList)
     this.inventoryListElement = document.querySelector(this.selectors.inventoryList)
@@ -276,6 +285,45 @@ class ModalsMain {
 
     return popup
   }
+
+  startConfetti() {
+    if (typeof confetti === 'undefined') {
+      console.log('canvas-confetti library not loaded')
+      return
+    }
+
+    const { startVelocity, spread, ticks, zIndex } = this.confettiConfig
+    const defaults = { startVelocity, spread, ticks, zIndex }
+
+    const randomInRange = (min, max) => Math.random() * (max - min) + min
+
+    const fireConfetti = () => {
+      const particleCount = 50
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+      })
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+      })
+    }
+
+    fireConfetti()
+    this.confettiInterval = setInterval(fireConfetti, 250)
+  }
+
+  stopConfetti() {
+    if (this.confettiInterval) {
+      clearInterval(this.confettiInterval)
+      this.confettiInterval = null
+    }
+  }
+
   openPopup(cardId, place) {
     this.closeActivePopup()
 
@@ -291,10 +339,18 @@ class ModalsMain {
     this.bindPopupEvents(popup, place)
 
     popup.showModal()
+
+    if (place === 'victory') {
+      this.startConfetti()
+    }
   }
 
   closeActivePopup() {
     if (this.activePopup) {
+      if (this.currentPlace === 'victory') {
+        this.stopConfetti()
+      }
+
       this.activePopup.close()
       this.activePopup.remove()
       this.activePopup = null

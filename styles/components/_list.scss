@@ -35,7 +35,8 @@
   }
 
   &__item {
-    height: fit-content;
+    max-height:350px;
+    height: 100%;
     width: 100%;
     max-width: var(--card-width);
     display: flex;

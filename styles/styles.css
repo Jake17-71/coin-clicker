@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 /**
   Нормализация блочной модели
  */
@@ -218,7 +218,7 @@ svg * {
   --border-radius-xxs: 0.3125rem;
   --border-radius-xxxs: 0.25rem;
   --input-height: 3rem;
-  --font-family-base: "Space Grotesk", sans-serif;
+  --font-family-base: "Rubik", sans-serif;
   --container-width: clamp(80rem, 0rem + 100vw, 100rem);
   --container-padding-x: 1rem;
   --transition-duration: 0.2s;
@@ -1186,8 +1186,8 @@ a[class] {
   background-color: red;
 }
 .list__item {
-  height: -moz-fit-content;
-  height: fit-content;
+  max-height: 21.875rem;
+  height: 100%;
   width: 100%;
   max-width: var(--card-width);
   display: flex;
@@ -1302,6 +1302,7 @@ a[class] {
   color: var(--text);
   display: flex;
   align-items: center;
+  margin-block: auto;
   justify-content: center;
   transition: color var(--transition-change-theme);
 }
