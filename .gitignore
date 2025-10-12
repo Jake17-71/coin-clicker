@@ -10,10 +10,14 @@
 # Node modules
 node_modules/
 
-# IDE files .idea/
+# IDE files
+.idea/
 
-# Logs *.log
+# Logs
+*.log
 
-# config files package.json package-lock.json postcss.config.js
+# config files
+ package.json package-lock.json postcss.config.js
 
-# Исходники для стилей styles/**/*.scss
+# Исходники для стилей s
+tyles/**/*.scss

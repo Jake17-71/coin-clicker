@@ -62,17 +62,23 @@
 
   &-clicking {
     @include square(300px);
-    background-color: var(--bg-light);
     border: var(--border);
-    color: var(--text-muted);
+    border-width: var(--border-width-xm);
+    background-color: var(--bg);
+
+    background-image: url('/images/cat.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 
     @include hover {
-      background-color: var(--border-color);
-      transform: translateY(-2px);
+      background-color: var(--bg-light);
+      transform: translateY(-3px);
+      background-image: url('/images/cat-blink.png');
     }
 
     &:active {
-      transform: translateY(0);
+      transform: translateY(0);     
     }
 
     @include tablet {

@@ -103,7 +103,7 @@
     @include flex-center();
     gap: 6px;
     padding: 6px 6px;
-    background-color: var(--bg-dark);
+    background-color: var(--bg);
     border-radius: var(--border-radius-xxs);
     transition: background-color var(--transition-change-theme);
 
@@ -116,11 +116,11 @@
     }
 
     &-image {
-      @include square(20px);
+      @include square(36px);
       @include flex-center();
 
       @include laptop {
-        @include square(15px);
+        @include square(24px);
       }
 
       svg {

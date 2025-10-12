@@ -160,7 +160,7 @@
     @include flex-center;
     gap: 6px;
     padding: 6px 10px;
-    background-color: var(--bg-dark);
+    background-color: var(--bg-light);
     border-radius: var(--border-radius-xxs);
     transition: background-color var(--transition-change-theme);
 
@@ -170,7 +170,7 @@
     }
 
     &-icon {
-      @include square(20px);
+      @include square(36px);
       @include flex-center;
 
       svg {
