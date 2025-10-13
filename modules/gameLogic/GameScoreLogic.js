@@ -13,7 +13,7 @@ class GameScoreLogic {
 
   constructor(initialScore = 0, alertInstance = null, storageInstance = null, modalsInstance = null) {
     this.score = initialScore
-    this.victoryScore = 10
+    this.victoryScore = 1000000
     this.clickPower = this.gameConfig.clickPower
     this.passiveScore = this.gameConfig.passiveScore
     this.criticalClickChance = this.gameConfig.criticalClickChance
@@ -104,11 +104,11 @@ class GameScoreLogic {
     this.updateDisplay()
   }
 
-  addClickPower(amount = 2) {
-    this.clickPower *= amount
+  addClickPower(amount = 1) {
+    this.clickPower += amount
   }
 
-  addPassiveScore(amount = 100) {
+  addPassiveScore(amount = 50) {
     this.passiveScore += amount
   }
 
@@ -121,8 +121,8 @@ class GameScoreLogic {
     }, 5000)
   }
 
-  addCriticalClickChance() {
-    this.criticalClickChance += 10
+  addCriticalClickChance(amount = 5) {
+    this.criticalClickChance += amount
   }
 
   isCriticalClickActivate() {

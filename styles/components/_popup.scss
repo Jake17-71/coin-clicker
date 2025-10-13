@@ -50,6 +50,24 @@
         'body body'
         'footer footer' / auto 1fr;
       place-items: start;
+
+
+      .popup {
+        &__price-inner,
+        &__level-inner {
+          @include flex-center;
+          gap: 6px;
+          padding: 6px 10px;
+        }
+
+        &__level-inner {
+          align-self: start;
+        }
+
+        &__max-level-text {
+          color: var(--text-muted);
+        }
+      }
     }
   }
 
@@ -153,6 +171,7 @@
   &__card-price {
     grid-area: price;
     @include flex-center();
+    flex-direction: column;
     gap: 6px;
   }
 
@@ -179,17 +198,26 @@
       }
     }
 
-    &-value {
+    &-value,
+    &-level-budge {
       @include fluid-text(16, 14);
       color: var(--text);
       line-height: 1;
       font-weight: 500;
+    }
+
+    &-level-budge {
+      padding: 10px 10px;
     }
   }
 
   &__card-body {
     grid-area: body;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
   }
 
   &__body {
@@ -206,6 +234,13 @@
     &--centered-text {
       text-align: center;
     }
+  }
+
+  &__current-effect,
+  &__next-effect {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text);
   }
 
   &__footer {

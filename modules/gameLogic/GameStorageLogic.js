@@ -18,7 +18,7 @@ class GameStorageLogic {
         clickPower: this.scoreLogic.clickPower,
         passiveScore: this.scoreLogic.passiveScore,
         criticalClickChance: this.scoreLogic.criticalClickChance,
-        purchasedCards: Array.from(this.gameMain.purchasedCards),
+        purchasedCards: Array.from(this.gameMain.purchasedCards.entries()),
       }
 
       localStorage.setItem(this.storageKey, JSON.stringify(gameData))
@@ -34,7 +34,7 @@ class GameStorageLogic {
       if (gameDataNormalize !== null) {
         const gameData = JSON.parse(gameDataNormalize)
         this.scoreLogic.loadState(gameData)
-        this.gameMain.purchasedCards = new Set(gameData.purchasedCards || [])
+        this.gameMain.purchasedCards = new Map(gameData.purchasedCards || [])
       }
     } catch (error) {
       console.error('Load error:', error)

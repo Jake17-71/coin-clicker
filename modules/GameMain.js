@@ -8,7 +8,7 @@ import ModalsMain from './Modals.js'
 
 class GameMain {
   constructor() {
-    this.purchasedCards = new Set()
+    this.purchasedCards = new Map()
     this.alertCollection = null
     this.scoreLogic = null
     this.storageLogic = null
@@ -73,7 +73,7 @@ class GameMain {
       passiveScore: this.scoreLogic.passiveScore,
       criticalClickChance: this.scoreLogic.criticalClickChance,
       criticalMultiplier: this.scoreLogic.criticalMultiplier,
-      purchasedCards: Array.from(this.purchasedCards),
+      purchasedCards: Object.fromEntries(this.purchasedCards),
       victoryAchieved: this.storageLogic.isVictoryAchieved(),
       currentScore: this.scoreLogic.score
     })

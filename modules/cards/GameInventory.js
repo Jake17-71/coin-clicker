@@ -14,7 +14,7 @@ class GameInventory extends GameCardsMain {
   }
 
   initInventory() {
-    this.gameMain.purchasedCards.forEach(cardId => {
+    this.gameMain.purchasedCards.forEach((level, cardId) => {
       this.addCard(cardId, this.containerInventoryElement)
     })
 

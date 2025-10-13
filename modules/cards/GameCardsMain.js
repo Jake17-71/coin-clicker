@@ -2,24 +2,36 @@ class GameCardsMain {
   cardsConfig = {
     'card-1': {
       id: 'card-1',
-      image: '/images/1.png',
+      image: '/images/cat1.png',
       title: 'Сила Клика',
-      price: 10,
-      description: 'Увеличивает силу клика в 2 раза',
+      basePrice: 10,              // Базовая цена (уровень 1)
+      priceMultiplier: 1.3,       // Множитель цены за уровень
+      effectMultiplier: 2,        // Прирост эффекта за уровень
+      maxLevel: 25,               // Максимальный уровень
+      effectType: 'clickPower',   // Тип эффекта
+      description: 'Увеличивает силу клика на +2 за уровень.',
     },
     'card-2': {
       id: 'card-2',
       image: '/images/2.png',
       title: 'Пассивный Доход',
-      price: 100,
-      description: 'Добавляет пассивный доход +100 каждые 5 секунд',
+      basePrice: 100,
+      priceMultiplier: 1.5,
+      effectMultiplier: 100,
+      maxLevel: 15,
+      effectType: 'passiveIncome',
+      description: 'Добавляет +50 пассивного дохода за уровень (каждые 5 секунд).',
     },
     'card-3': {
       id: 'card-3',
       image: '/images/3.png',
-      title: 'Шанс Критического Клика',
-      price: 100,
-      description: 'Увеличивает шанс критического клика на 10%',
+      title: 'Шанс Крита',
+      basePrice: 100,
+      priceMultiplier: 1.8,
+      effectMultiplier: 5,
+      maxLevel: 10,
+      effectType: 'criticalChance',
+      description: 'Увеличивает шанс критического клика на +5% за уровень.',
     }
   }
 
@@ -40,8 +52,31 @@ class GameCardsMain {
     return this.cardsConfig[cardId]
   }
 
+  getCardLevel(cardId) {
+    return this.gameMain.purchasedCards.get(cardId) || 0
+  }
+
+  calculateNextLevelPrice(cardId) {
+    const config = this.getCardConfig(cardId)
+    const currentLevel = this.getCardLevel(cardId)
+
+    if (currentLevel === 0) {
+      return config.basePrice
+    }
+    // Формула: basePrice * (priceMultiplier ^ currentLevel)
+    return Math.ceil(config.basePrice * Math.pow(config.priceMultiplier, currentLevel))
+  }
+
+  isMaxLevel(cardId) {
+    const currentLevel = this.getCardLevel(cardId)
+    const config = this.getCardConfig(cardId)
+    return currentLevel >= config.maxLevel
+  }
+
   createCardElement(cardId) {
     const config = this.getCardConfig(cardId)
+    const currentLevel = this.getCardLevel(cardId)
+    const price = this.calculateNextLevelPrice(cardId)
 
     if (!config) {
       console.log(`Card with ${cardId} not found`)
@@ -79,20 +114,21 @@ class GameCardsMain {
           <div class="card__price">
             <div class="card__price-image">
               <img
-          src="/images/paw.png"
-          alt=""
-          width=""
-          height=""
-          loading="lazy"
-        />
+                src="/images/paw.png"
+                alt=""
+                width=""
+                height=""
+                loading="lazy"
+              />
             </div>
             <span 
               class="card__price-digit" 
               data-js-card-price-digit
             >
-              ${config.price}
+              ${price}
             </span>
           </div>
+          <span class="card__level" data-js-card-level>Ур. ${currentLevel}/${config.maxLevel}</span>
           <button
             type="button"
             class="button button-popup-link card__button"
@@ -105,14 +141,6 @@ class GameCardsMain {
     `
 
     return li
-  }
-
-  createEmptyMessage(message) {
-    const emptyDiv = document.createElement('div')
-    emptyDiv.className = 'list__empty-message'
-    emptyDiv.dataset.jsEmptyMessage = ''
-    emptyDiv.textContent = message
-    return emptyDiv
   }
 
   removeCard(cardId, containerElement) {
@@ -144,6 +172,27 @@ class GameCardsMain {
     if (cardElement) {
       containerElement.appendChild(cardElement)
       this.activeCards.set(cardId, cardElement)
+    }
+  }
+
+  updateCardUI(cardId, containerElement) {
+    if (!containerElement) return
+
+    const cardElement = containerElement.querySelector(`[data-js-card-id="${cardId}"]`)
+    if (!cardElement) return
+
+    const config = this.getCardConfig(cardId)
+    const currentLevel = this.getCardLevel(cardId)
+    const price = this.calculateNextLevelPrice(cardId)
+
+    const priceElement = cardElement.querySelector('[data-js-card-price-digit]')
+    if (priceElement) {
+      priceElement.textContent = price
+    }
+
+    const levelTextElement = cardElement.querySelector('[data-js-card-level]')
+    if (levelTextElement) {
+      levelTextElement.textContent = `Ур. ${currentLevel}/${config.maxLevel}`
     }
   }
 

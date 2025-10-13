@@ -129,14 +129,14 @@ class ModalsMain {
                             loading="lazy"
                           />
             </div>
-            <span class="popup__price-value">${config.price}</span>
+            <span class="popup__price-value">${config.basePrice}</span>
           </div>
         </div>
   
         <div class="popup__card-body">
-          <p class="popup__description">
+          <div class="popup__description">
             ${config.description}
-          </p>
+          </div>
         </div>
   
         <div class="popup__footer popup__footer--card">
@@ -158,7 +158,7 @@ class ModalsMain {
       </div>
     `,
 
-    inventory: (config) => `
+    inventory: (config, currentLevel, nextPrice, isMaxLevel) => `
       <div class="popup__content popup__content--card">
         <button
           type="button"
@@ -184,29 +184,67 @@ class ModalsMain {
           </h2>
         </div>
   
+        ${!isMaxLevel ? `
         <div class="popup__card-price">
-          <span class="popup__price-label">Цена:</span>
-          <div class="popup__price">
-            <div class="popup__price-icon">
-              <img
-                            src="/images/paw.png"
-                            alt=""
-                            width=""
-                            height=""
-                            loading="lazy"
-                          />
+          <div class="popup__price-inner">
+            <span class="popup__price-label">Цена улучшения:</span>
+            <div class="popup__price">
+                <div class="popup__price-icon">
+                  <img
+                    src="/images/paw.png"
+                    alt=""
+                    width=""
+                    height=""
+                    loading="lazy"
+                  />
+                </div>
+                <span class="popup__price-value">${nextPrice}</span>
+              </div>
+          </div>
+          <div class="popup__level-inner">
+            <span class="popup__price-label">Уровень: </span>
+            <div class="popup__price-level-budge popup__price">
+              ${currentLevel}/${config.maxLevel}
             </div>
-            <span class="popup__price-value">${config.price}</span>
           </div>
         </div>
+        ` : `
+        <div class="popup__max-level popup__card-price">
+          <span class="popup__max-level-text">Достигнут максимальный уровень</span>
+        </div>
+        `}
   
         <div class="popup__card-body">
-          <p class="popup__description">
+          <div class="popup__description">
             ${config.description}
-          </p>
+          </div>
+          <div class="popup__current-effect">
+            Текущий эффект: <strong>${config.effectMultiplier * currentLevel}</strong>
+          </div>
+          ${!isMaxLevel ? `
+          <div class="popup__next-effect">
+            После улучшения: <strong>${config.effectMultiplier * (currentLevel + 1)}</strong>
+          </div>
+          ` : ''}
         </div>
   
         <div class="popup__footer popup__footer--card">
+          ${!isMaxLevel ? `
+          <button
+            type="button"
+            class="popup__button popup__button--secondary"
+            data-js-popup-close
+          >
+            Отмена
+          </button>
+          <button
+            type="button"
+            class="popup__button popup__button--primary"
+            data-js-popup-confirm="upgrade"
+          >
+            Улучшить
+          </button>
+          ` : `
           <button
             type="button"
             class="popup__button popup__button--primary"
@@ -214,6 +252,7 @@ class ModalsMain {
           >
             Закрыть
           </button>
+          `}
         </div>
       </div>
     `,
@@ -288,8 +327,20 @@ class ModalsMain {
     popup.dataset.jsPopup = place
     popup.dataset.jsCardId = cardId || ''
 
-    const template = this.popupTemplates[place]
-    popup.innerHTML = template ? template(config) : ''
+    let template
+
+    if (place === 'inventory') {
+      const currentLevel = this.gameCardsMain.getCardLevel(cardId)
+      const nextPrice = this.gameCardsMain.calculateNextLevelPrice(cardId)
+      const isMaxLevel = this.gameCardsMain.isMaxLevel(cardId)
+      template = this.popupTemplates[place](config, currentLevel, nextPrice, isMaxLevel)
+    } else {
+      template = this.popupTemplates[place]
+      template = template ? template(config)
+        : ''
+    }
+
+    popup.innerHTML = template
 
     return popup
   }
@@ -370,6 +421,10 @@ class ModalsMain {
   handleConfirm(action) {
     if (action === 'buy' && this.currentCardId) {
       this.gameShop.buyCard(this.currentCardId)
+    }
+
+    if (action === 'upgrade' && this.currentCardId) {
+      this.gameShop.upgradeCard(this.currentCardId)
     }
 
     if (action === 'reset') {

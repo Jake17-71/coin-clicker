@@ -116,17 +116,16 @@
     }
 
     &-image {
-      @include square(36px);
+      @include square(48px);
       @include flex-center();
 
       @include laptop {
-        @include square(24px);
+        @include square(36px);
       }
+    }
 
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+    &__level {
+      color: var(--text);
     }
 
     &-digit {
