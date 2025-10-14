@@ -4,35 +4,57 @@ class GameCardsMain {
       id: 'card-1',
       image: '/images/cat1.png',
       title: 'Сила Клика',
-      basePrice: 10,              // Базовая цена (уровень 1)
-      priceMultiplier: 1.3,       // Множитель цены за уровень
-      effectMultiplier: 2,        // Прирост эффекта за уровень
-      maxLevel: 25,               // Максимальный уровень
+      basePrice: 20,              // Базовая цена (уровень 1)
+      priceMultiplier: 1.5,       // Множитель цены за уровень
+      effectMultiplier: 3,        // Прирост эффекта за уровень
+      maxLevel: 20,               // Максимальный уровень
       effectType: 'clickPower',   // Тип эффекта
-      description: 'Увеличивает силу клика на +2 за уровень.',
+      description: 'Увеличивает силу клика на +3 за уровень.',
     },
     'card-2': {
       id: 'card-2',
       image: '/images/2.png',
       title: 'Пассивный Доход',
-      basePrice: 100,
-      priceMultiplier: 1.5,
-      effectMultiplier: 100,
-      maxLevel: 15,
+      basePrice: 150,
+      priceMultiplier: 1.55,
+      effectMultiplier: 60,
+      maxLevel: 20,
       effectType: 'passiveIncome',
-      description: 'Добавляет +50 пассивного дохода за уровень (каждые 5 секунд).',
+      description: 'Добавляет +60 пассивного дохода за уровень.',
     },
     'card-3': {
       id: 'card-3',
       image: '/images/3.png',
       title: 'Шанс Крита',
-      basePrice: 100,
-      priceMultiplier: 1.8,
-      effectMultiplier: 5,
-      maxLevel: 10,
+      basePrice: 300,
+      priceMultiplier: 1.7,
+      effectMultiplier: 2.5,
+      maxLevel: 25,
       effectType: 'criticalChance',
-      description: 'Увеличивает шанс критического клика на +5% за уровень.',
-    }
+      description: 'Увеличивает шанс критического клика на +2.5% за уровень.',
+    },
+    'card-4': {
+      id: 'card-4',
+      image: '/images/4.png',
+      title: 'Критический Урон',
+      basePrice: 180,
+      priceMultiplier: 1.6,
+      effectMultiplier: 12,
+      maxLevel: 20,
+      effectType: 'criticalDamage',
+      description: 'Увеличивает урон критического удара на 12 за уровень.',
+    },
+    'card-5': {
+      id: 'card-5',
+      image: '/images/5.png',
+      title: 'Ускорение Дохода',
+      basePrice: 250,
+      priceMultiplier: 1.5,
+      effectMultiplier: 0.5,
+      maxLevel: 10,
+      effectType: 'passiveIncomeSpeed',
+      description: 'Уменьшает интервал пассивного дохода на 0.5 сек за уровень (макс. 1 сек).',
+    },
   }
 
   selectors = {
@@ -71,6 +93,16 @@ class GameCardsMain {
     const currentLevel = this.getCardLevel(cardId)
     const config = this.getCardConfig(cardId)
     return currentLevel >= config.maxLevel
+  }
+
+  formatEffectValue(value, decimals = 1) {
+    const fixed = parseFloat(value.toFixed(decimals))
+
+    if (fixed % 1 === 0) {
+      return Math.floor(fixed)
+    }
+
+    return fixed
   }
 
   createCardElement(cardId) {

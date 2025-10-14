@@ -17,7 +17,9 @@ class GameStorageLogic {
         score: this.scoreLogic.score,
         clickPower: this.scoreLogic.clickPower,
         passiveScore: this.scoreLogic.passiveScore,
+        passiveIncomeInterval: this.scoreLogic.passiveIncomeInterval,
         criticalClickChance: this.scoreLogic.criticalClickChance,
+        criticalDamageBonus: this.scoreLogic.criticalDamageBonus,
         purchasedCards: Array.from(this.gameMain.purchasedCards.entries()),
       }
 

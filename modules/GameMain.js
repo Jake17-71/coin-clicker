@@ -56,7 +56,9 @@ class GameMain {
     this.scoreLogic.score = this.scoreLogic.gameConfig.score
     this.scoreLogic.clickPower = this.scoreLogic.gameConfig.clickPower
     this.scoreLogic.passiveScore = this.scoreLogic.gameConfig.passiveScore
+    this.scoreLogic.passiveIncomeInterval = this.scoreLogic.gameConfig.passiveIncomeInterval
     this.scoreLogic.criticalClickChance = this.scoreLogic.gameConfig.criticalClickChance
+    this.scoreLogic.criticalDamageBonus = this.scoreLogic.gameConfig.criticalDamageBonus
     this.scoreLogic.resetVictoryFlag()
     this.scoreLogic.updateDisplay()
 

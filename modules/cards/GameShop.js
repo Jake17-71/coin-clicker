@@ -82,6 +82,13 @@ class GameShop extends GameCardsMain {
       case 'criticalChance':
         this.scoreLogic.addCriticalClickChance(effectIncrease)
         break
+      case 'criticalDamage':
+        this.scoreLogic.addCriticalDamageBonus(effectIncrease)
+        break
+      case 'passiveIncomeSpeed':
+        this.scoreLogic.addPassiveIncomeSpeedBonus(effectIncrease)
+        this.scoreLogic.updatePassiveIncomeInterval()
+        break
     }
   }
 

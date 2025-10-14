@@ -116,11 +116,11 @@
     }
 
     &-image {
-      @include square(48px);
+      @include square(36px);
       @include flex-center();
 
       @include laptop {
-        @include square(36px);
+        @include square(24px);
       }
     }
 

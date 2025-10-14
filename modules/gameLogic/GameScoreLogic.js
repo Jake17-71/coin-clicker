@@ -7,17 +7,21 @@ class GameScoreLogic {
     score: 0,
     clickPower: 1,
     passiveScore: 0,
+    passiveIncomeInterval: 5000,
     criticalClickChance: 0,
     criticalMultiplier: 2,
+    criticalDamageBonus: 0,
   }
 
   constructor(initialScore = 0, alertInstance = null, storageInstance = null, modalsInstance = null) {
     this.score = initialScore
-    this.victoryScore = 1000000
+    this.victoryScore = 500000
     this.clickPower = this.gameConfig.clickPower
     this.passiveScore = this.gameConfig.passiveScore
+    this.passiveIncomeInterval = this.gameConfig.passiveIncomeInterval
     this.criticalClickChance = this.gameConfig.criticalClickChance
     this.criticalMultiplier = this.gameConfig.criticalMultiplier
+    this.criticalDamageBonus = this.gameConfig.criticalDamageBonus
     this.displayElements = document.querySelectorAll(this.selectors.displaySelector)
     this.alertInstance = alertInstance
     this.storageInstance = storageInstance
@@ -26,7 +30,11 @@ class GameScoreLogic {
   }
 
   addScore() {
-    const multiplier = this.isCriticalClickActivate() ? this.criticalMultiplier : 1
+    const isCritical = this.isCriticalClickActivate()
+
+    const currentMultiplier = this.criticalMultiplier + this.criticalDamageBonus
+    const multiplier = isCritical ? currentMultiplier : 1
+
     this.score += this.clickPower * multiplier
     this.updateDisplay()
   }
@@ -104,6 +112,10 @@ class GameScoreLogic {
     this.updateDisplay()
   }
 
+  addCriticalDamageBonus(amount = 5) {
+    this.criticalDamageBonus += amount
+  }
+
   addClickPower(amount = 1) {
     this.clickPower += amount
   }
@@ -112,13 +124,31 @@ class GameScoreLogic {
     this.passiveScore += amount
   }
 
+  addPassiveIncomeSpeedBonus(amountToDecrease = 0.4) {
+    const decreaseMs = amountToDecrease * 1000
+
+    const minInterval = 1000
+    this.passiveIncomeInterval = Math.max(
+      this.passiveIncomeInterval - decreaseMs,
+      minInterval
+    )
+  }
+
   setPassiveIncome() {
-    setInterval(() => {
+    this.passiveIncomeIntervalId = setInterval(() => {
       if (this.passiveScore > 0) {
         this.score += this.passiveScore
         this.updateDisplay()
       }
-    }, 5000)
+    }, this.passiveIncomeInterval)
+  }
+
+  updatePassiveIncomeInterval() {
+    if (this.passiveIncomeIntervalId) {
+      clearInterval(this.passiveIncomeIntervalId)
+    }
+
+    this.setPassiveIncome()
   }
 
   addCriticalClickChance(amount = 5) {
@@ -138,7 +168,9 @@ class GameScoreLogic {
     this.score = gameData.score
     this.clickPower = gameData.clickPower
     this.passiveScore = gameData.passiveScore
+    this.passiveIncomeInterval = gameData.passiveIncomeInterval
     this.criticalClickChance = gameData.criticalClickChance
+    this.criticalDamageBonus = gameData.criticalDamageBonus
   }
 
   resetVictoryFlag() {

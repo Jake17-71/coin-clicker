@@ -26,7 +26,7 @@
   &__price {
     @include flex-center();
     gap: 6px;
-    padding: 6px 6px;
+    padding: 6px 10px;
     background-color: var(--bg-light);
     border-radius: var(--border-radius-xxs);
     transition: background-color var(--transition-change-theme);
@@ -40,11 +40,11 @@
     }
 
     &-image {
-      @include square(48px);
+      @include square(36px);
       @include flex-center();
 
       @include laptop {
-        @include square(36px);
+        @include square(24px);
       }
 
       svg {

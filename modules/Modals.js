@@ -219,11 +219,11 @@ class ModalsMain {
             ${config.description}
           </div>
           <div class="popup__current-effect">
-            Текущий эффект: <strong>${config.effectMultiplier * currentLevel}</strong>
+            Текущий эффект: <strong>${this.gameCardsMain.formatEffectValue(config.effectMultiplier * currentLevel)}</strong>
           </div>
           ${!isMaxLevel ? `
           <div class="popup__next-effect">
-            После улучшения: <strong>${config.effectMultiplier * (currentLevel + 1)}</strong>
+            После улучшения: <strong>${this.gameCardsMain.formatEffectValue(config.effectMultiplier * (currentLevel + 1))}</strong>
           </div>
           ` : ''}
         </div>

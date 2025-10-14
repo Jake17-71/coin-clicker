@@ -25,6 +25,7 @@ class Alert {
     this.alertElement = null
     this.closeButtonElement = null
     this.autoCloseTimer = null
+    this.hideTimer = null
   }
 
   createAlertElement(message, type = 'info') {
@@ -60,8 +61,27 @@ class Alert {
     return div.innerHTML
   }
 
+  removePreviousAlert() {
+    if (!this.alertElement) return
+
+    this.clearAutoCloseTimer()
+    this.clearHideTimer()
+
+    if (this.closeButtonElement) {
+      this.closeButtonElement.removeEventListener('click', this.onCloseButtonClick)
+    }
+    if (this.alertElement) {
+      this.alertElement.removeEventListener('mouseenter', this.onAlertMouseEnter)
+      this.alertElement.removeEventListener('mouseleave', this.onAlertMouseLeave)
+      this.alertElement.remove()
+    }
+
+    this.alertElement = null
+    this.closeButtonElement = null
+  }
+
   show(message, type = 'info') {
-    this.hide()
+    this.removePreviousAlert()
 
     this.alertElement = this.createAlertElement(message, type)
     document.body.appendChild(this.alertElement)
@@ -83,12 +103,13 @@ class Alert {
 
     this.alertElement.classList.remove(this.stateClasses.isVisible)
 
-    setTimeout(() => {
+    this.clearHideTimer()
+    this.hideTimer = setTimeout(() => {
       if (this.alertElement) {
         this.alertElement.remove()
+        this.alertElement = null
+        this.closeButtonElement = null
       }
-      this.alertElement = null
-      this.closeButtonElement = null
     }, this.alertConfig.animationDuration)
   }
 
@@ -104,6 +125,13 @@ class Alert {
     if (this.autoCloseTimer) {
       clearTimeout(this.autoCloseTimer)
       this.autoCloseTimer = null
+    }
+  }
+
+  clearHideTimer() {
+    if (this.hideTimer) {
+      clearTimeout(this.hideTimer)
+      this.hideTimer = null
     }
   }
 
