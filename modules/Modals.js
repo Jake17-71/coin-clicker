@@ -74,7 +74,7 @@ class ModalsMain {
   
         <div class="popup__body">
           <p class="popup__description popup__description--centered-text">
-            Цель данной игры достигнуть 1.000.000 очков! <br><br>
+            Цель данной игры достигнуть 500.000 очков! <br><br>
             Более подробно ознакомится с механиками игры можно во вкладке "Правила". <br>
           </p>
         </div>
@@ -274,7 +274,7 @@ class ModalsMain {
     
         <div class="popup__body">
           <p class="popup__description popup__description--centered-text">
-            Вы достигли цели в 1.000.000 очков!<br><br>
+            Вы достигли цели в 500.000 очков!<br><br>
             Вы можете продолжить накапливать очки или начать новую игру.
           </p>
         </div>
