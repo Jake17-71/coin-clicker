@@ -2,7 +2,7 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, var(--card-width));
+  grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), var(--card-width)));
   grid-auto-rows: max-content;
   align-content: start;
   justify-content: center;
@@ -14,47 +14,58 @@
   padding-right: 8px;
   max-width: 100%;
 
+  @include tablet {
+    gap: 12px;
+    padding-right: 4px;
+  }
+
   &__empty-message {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
     color: var(--text);
     text-align: center;
-    margin: 5px;
-    padding: 5px;
-    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 300px;
     border: var(--border);
     border-radius: var(--border-radius-m);
     transition-duration: var(--transition-change-theme);
-  }
 
-  @include tablet {
-    gap: 10px;
-  }
+    &-image {
+      justify-self: center;
+      max-width: 120px;
+      width: 100%;
+      height: auto;
+    }
 
-  &.is-empty {
-    @include square(24px);
-    background-color: red;
+    p {
+      margin: 0;
+      color: var(--text-muted);
+    }
   }
 
   &__item {
-    max-height:350px;
     height: 100%;
     width: 100%;
-    max-width: var(--card-width);
     display: flex;
-  }
+    min-height: 280px;
 
-  @include laptop {
-    --card-width: 180px;
-  }
-
-  @include tablet {
-    --card-width: 135px;
+    @include tablet {
+      min-height: 260px;
+    }
   }
 
   &::-webkit-scrollbar {
     width: 6px;
 
     @include tablet {
-      width: 3px;
+      width: 4px;
     }
   }
 
@@ -66,9 +77,14 @@
   &::-webkit-scrollbar-thumb {
     background-color: var(--border-color);
     border-radius: 3px;
+    transition: background-color var(--transition-duration);
 
     &:hover {
       background-color: var(--border-muted);
+    }
+
+    &:active {
+      background-color: var(--text-muted);
     }
   }
 }

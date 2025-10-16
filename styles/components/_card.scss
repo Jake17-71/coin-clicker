@@ -18,12 +18,9 @@
   height: 100%;
   min-width: 0;
 
-  @include laptop  {
-    gap: 6px;
-    padding: 15px 10px;
-  }
-
   @include tablet {
+    gap: 8px;
+    padding: 15px 10px;
     border-width: var(--border-width-xm);
   }
 
@@ -67,6 +64,7 @@
 
       @include tablet {
         max-width: 80px;
+        min-height: 80px;
       }
     }
   }
@@ -79,6 +77,9 @@
     margin-block: auto;
     justify-content: center;
     transition: color var(--transition-change-theme);
+    line-height: 1.3;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   &__description {
@@ -93,44 +94,44 @@
     border-top: 1px solid var(--border-muted);
     transition: border-color var(--transition-change-theme);
 
-    @include laptop {
-      gap: 6px;
-      padding-top: 6px;
+    @include tablet {
+      gap: 8px;
+      padding-top: 8px;
     }
   }
 
   &__price {
     @include flex-center();
     gap: 6px;
-    padding: 6px 6px;
+    padding: 6px 8px;
     background-color: var(--bg);
     border-radius: var(--border-radius-xxs);
     transition: background-color var(--transition-change-theme);
 
-    @include laptop {
-      gap: 4px;
-    }
-
     @include tablet {
-      padding: 3px;
+      gap: 4px;
+      padding: 4px 6px;
     }
 
     &-image {
       @include square(36px);
       @include flex-center();
+      flex-shrink: 0;
 
-      @include laptop {
-        @include square(24px);
+      @include tablet {
+        @include square(28px);
       }
     }
 
     &__level {
       color: var(--text);
+      font-size: inherit;
     }
 
     &-digit {
       @include fluid-text(18, 16);
       color: var(--text);
+      white-space: nowrap;
     }
   }
 }

@@ -1,5 +1,16 @@
 @use "../helpers" as *;
 
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .popup {
   position: relative;
   padding: 0;
@@ -17,7 +28,7 @@
   }
 
   &[open] {
-    animation: popup-fade-in 0.25s ease forwards;
+    animation: popup-fade-in 0.25s var(--transition-timing) forwards;
   }
 
   &--confirm {
@@ -51,7 +62,6 @@
         'footer footer' / auto 1fr;
       place-items: start;
 
-
       .popup {
         &__price-inner,
         &__level-inner {
@@ -72,11 +82,11 @@
   }
 
   &__close {
-    --size: 24px;
+    --size: 28px;
 
     position: absolute;
-    top: calc(var(--size) / 2);
-    right: calc(var(--size) / 2);
+    top: 12px;
+    right: 12px;
     z-index: 1;
     padding: 0;
     border: var(--border);
@@ -95,11 +105,11 @@
     @include hover {
       background-color: var(--highlight);
       color: var(--text);
-      transform: translateY(-2px);
+      transform: translateY(-2px) rotate(90deg);
     }
 
     &:active {
-      transform: translateY(0);
+      transform: translateY(0) rotate(90deg);
     }
 
     &::before,
@@ -135,6 +145,7 @@
     grid-area: image;
     @include square(120px);
     @include flex-center;
+    flex-shrink: 0;
   }
 
   &__image {
@@ -142,7 +153,7 @@
     height: 100%;
     object-fit: contain;
     border: var(--border);
-    border-radius: var(--border-radius-l);
+    border-radius: var(--border-radius-m);
   }
 
   &__card-header {
@@ -162,6 +173,7 @@
     font-weight: 600;
     color: var(--text);
     text-align: center;
+    line-height: 1.2;
 
     .popup__content--card & {
       text-align: left;
@@ -173,6 +185,7 @@
     @include flex-center();
     flex-direction: column;
     gap: 6px;
+    align-self: start;
   }
 
   &__price {
@@ -189,12 +202,14 @@
     }
 
     &-icon {
-      @include square(36px);
+      @include square(32px);
       @include flex-center;
+      flex-shrink: 0;
 
-      svg {
+      img {
         width: 100%;
         height: 100%;
+        object-fit: contain;
       }
     }
 
@@ -207,7 +222,7 @@
     }
 
     &-level-budge {
-      padding: 10px 10px;
+      padding: 8px 12px;
     }
   }
 
@@ -247,7 +262,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap: 20px;
+    gap: 12px;
     width: 100%;
     margin-top: 8px;
 
@@ -259,16 +274,19 @@
 
   &__button {
     min-height: var(--input-height);
-    padding: 10px 24px;
+    padding: 12px 24px;
     border: var(--border);
     border-radius: var(--border-radius-m);
     background-color: var(--bg-light);
     color: var(--text);
     white-space: nowrap;
     cursor: pointer;
+    font-weight: 500;
     transition: background-color var(--transition-duration),
     color var(--transition-duration),
-    transform var(--transition-duration);
+    transform var(--transition-duration),
+    border-color var(--transition-duration);
+    max-width: 250px;
 
     @include focus-visible-no-typing;
 
@@ -299,20 +317,10 @@
   }
 }
 
-@keyframes popup-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 @include tablet {
   .popup {
     max-width: 95%;
+    max-height: 90vh;
 
     &__content {
       padding: 20px;
@@ -327,6 +335,15 @@
           'body'
           'footer' / 1fr;
         place-items: center;
+        text-align: center;
+      }
+    }
+
+    &__close {
+      --size: 32px;
+
+      .popup__content--card & {
+        justify-self: end;
       }
     }
 
@@ -335,12 +352,22 @@
     }
 
     &__title {
+      font-size: 20px;
       text-align: center;
+
+      .popup__content--card & {
+        text-align: center;
+      }
+    }
+
+    &__card-price {
+      align-self: center;
     }
 
     &__footer {
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      width: 100%;
 
       &--card {
         width: 100%;
@@ -349,6 +376,7 @@
 
     &__button {
       width: 100%;
+      min-height: 44px;
     }
   }
 }

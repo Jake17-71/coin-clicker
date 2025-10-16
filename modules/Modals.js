@@ -122,12 +122,12 @@ class ModalsMain {
           <div class="popup__price">
             <div class="popup__price-icon">
               <img
-                            src="/images/paw.png"
-                            alt=""
-                            width=""
-                            height=""
-                            loading="lazy"
-                          />
+                src="images/paw.png"
+                alt=""
+                width=""
+                height=""
+                loading="lazy"
+              />
             </div>
             <span class="popup__price-value">${config.basePrice}</span>
           </div>
@@ -191,7 +191,7 @@ class ModalsMain {
             <div class="popup__price">
                 <div class="popup__price-icon">
                   <img
-                    src="/images/paw.png"
+                    src="images/paw.png"
                     alt=""
                     width=""
                     height=""

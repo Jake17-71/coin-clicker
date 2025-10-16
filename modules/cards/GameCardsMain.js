@@ -2,7 +2,7 @@ class GameCardsMain {
   cardsConfig = {
     'card-1': {
       id: 'card-1',
-      image: '/images/1.png',
+      image: 'images/1.png',
       title: 'Сила Клика',
       basePrice: 25,              // Базовая цена (уровень 1)
       priceMultiplier: 1.7,       // Множитель цены за уровень
@@ -13,7 +13,7 @@ class GameCardsMain {
     },
     'card-2': {
       id: 'card-2',
-      image: '/images/2.png',
+      image: 'images/2.png',
       title: 'Пассивный Доход',
       basePrice: 300,
       priceMultiplier: 1.7,
@@ -24,7 +24,7 @@ class GameCardsMain {
     },
     'card-3': {
       id: 'card-3',
-      image: '/images/3.png',
+      image: 'images/3.png',
       title: 'Шанс Крита',
       basePrice: 1000,
       priceMultiplier: 1.7,
@@ -35,7 +35,7 @@ class GameCardsMain {
     },
     'card-4': {
       id: 'card-4',
-      image: '/images/4.png',
+      image: 'images/4.png',
       title: 'Критический Урон',
       basePrice: 700,
       priceMultiplier: 1.8,
@@ -46,7 +46,7 @@ class GameCardsMain {
     },
     'card-5': {
       id: 'card-5',
-      image: '/images/5.png',
+      image: 'images/5.png',
       title: 'Ускорение Дохода',
       basePrice: 1500,
       priceMultiplier: 1.6,
@@ -146,7 +146,7 @@ class GameCardsMain {
           <div class="card__price">
             <div class="card__price-image">
               <img
-                src="/images/paw.png"
+                src="images/paw.png"
                 alt=""
                 width=""
                 height=""

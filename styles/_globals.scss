@@ -1,6 +1,8 @@
 @use 'helpers' as *;
 
 html {
+  touch-action: manipulation;
+
   &.is-lock {
     overflow: hidden;
   }

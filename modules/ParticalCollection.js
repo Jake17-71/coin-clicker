@@ -30,7 +30,7 @@ class Particle {
     }
 
     try {
-      particlesJS.load('particles-js', '/particles.json', () => {
+      particlesJS.load('particles-js', '/paw-clicker/particles.json', () => {
         console.log('Particles.js config loaded successfully')
         this.isInitialized = true
         this.addAccessibilityAttributes()

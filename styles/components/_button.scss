@@ -4,6 +4,9 @@
   height: var(--input-height);
   border-radius: 34px;
   transition-duration: var(--transition-change-theme);
+  border: none;
+  background: none;
+  cursor: pointer;
 
   @include hover() {
     transition-duration: var(--transition-duration);
@@ -41,13 +44,11 @@
       width: calc(var(--sizeButton) / 4);
       height: calc(var(--sizeButton) / 4);
       left: calc(var(--sizeButton) / 8);
-
-      transition-duration: var(--transition-change-theme);
+      transition: transform var(--transition-change-theme);
 
       svg {
         width: calc(var(--sizeButton) / 4);
         height: calc(var(--sizeButton) / 4);
-
         border: var(--border-width-s) solid var(--border-color);
         border-radius: 50%;
         background-color: var(--bg-dark);
@@ -61,28 +62,30 @@
   }
 
   &-clicking {
-    @include square(300px);
+    width: fluid(450, 250);
+    height: fluid(450, 250);
     border: var(--border);
     border-width: var(--border-width-xm);
     background-color: var(--bg);
-
-    background-image: url('/images/cat.png');
+    background-image: url('/paw-clicker/images/cat.png');
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+
+    transition: background-color var(--transition-duration),
+    background-image var(--transition-duration),
+    transform var(--transition-duration);
 
     @include hover {
       background-color: var(--bg-light);
-      transform: translateY(-3px);
-      background-image: url('/images/cat-blink.png');
+      transform: translateY(-3px) scale(1.02);
+      background-image: url('/paw-clicker/images/cat-blink.png');
     }
 
     &:active {
-      transform: translateY(0);     
-    }
-
-    @include tablet {
-      @include square(200px);
+      transform: translateY(0) scale(0.98);
     }
   }
 
@@ -93,6 +96,7 @@
     background-color: var(--bg-light);
     border: var(--border);
     color: var(--text-muted);
+    flex-shrink: 0;
 
     @include tablet {
       --sizeButton: 36px;
@@ -103,12 +107,14 @@
       width: 100%;
       height: 100%;
       fill: currentColor;
+      transition: transform var(--transition-duration);
     }
 
     @include hover(false) {
+      color: var(--text);
+
       svg {
-        animation-name: spin360deg;
-        animation-duration: 0.7s;
+        animation: spin360deg 0.7s ease-in-out;
       }
 
       transform: translateY(-2px);
@@ -124,15 +130,17 @@
     align-items: center;
     justify-content: center;
     --input-height: 36px;
-    padding: 10px;
+    padding: 8px 12px;
     border-radius: var(--border-radius-m);
     background-color: var(--bg-light);
     border: var(--border);
     color: var(--text-muted);
     border-width: var(--border-width-s);
+    white-space: nowrap;
 
     @include hover {
       background-color: var(--border-color);
+      color: var(--text);
       transform: translateY(-2px);
     }
 
@@ -140,14 +148,10 @@
       transform: translateY(0);
     }
 
-    @include laptop {
-      --input-height: 30px;
-      padding: 7px;
-    }
-
     @include tablet {
-      --input-height: 30px;
-      padding: 5px;
+      --input-height: 32px;
+      padding: 6px 10px;
+      font-size: 13px;
     }
   }
 
@@ -155,14 +159,15 @@
     --sizeButton: 36px;
 
     @include square(var(--sizeButton));
-
     position: relative;
     background-color: var(--bg-light);
     border: var(--border);
     color: var(--text-muted);
+    flex-shrink: 0;
 
     @include hover {
       background-color: var(--border-muted);
+      color: var(--text);
       transform: translateY(-2px);
     }
 
@@ -177,20 +182,29 @@
     &::before,
     &::after {
       @include abs-center;
-
       content: '';
-      background-color: var(--text-muted);
+      background-color: currentColor;
       width: 2px;
       height: calc(var(--sizeButton) / 2);
       border-radius: 3px;
+      transition: background-color var(--transition-duration);
     }
 
-    &:before {
+    &::before {
       transform: rotate(45deg);
     }
 
-    &:after {
+    &::after {
       transform: rotate(-45deg);
     }
+  }
+}
+
+@keyframes spin360deg {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

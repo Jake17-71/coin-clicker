@@ -16,8 +16,9 @@
   @include tablet {
     grid-template-columns: 1fr auto;
     grid-template-areas:
-    'score-counter burger-button'
-    'game game';
+      'score-counter burger-button'
+      'game game';
     overflow: visible;
+    row-gap: 12px;
   }
 }

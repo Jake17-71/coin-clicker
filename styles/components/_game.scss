@@ -6,6 +6,50 @@
   border: var(--border);
   border-radius: var(--border-radius-l);
   grid-area: game;
+  overflow: hidden;
+  transition: background-color var(--transition-change-theme);
+
+  min-height: 400px;
+
+  @include tablet {
+    min-height: 350px;
+  }
+
+  @include mobile {
+    min-height: 300px;
+  }
+}
+
+.clicking-object {
+  @include flex-center();
+  margin: auto;
+  z-index: 1;
+  position: relative;
+
+  &::before {
+    content: '';
+    @include abs-center;
+    @include square(320px);
+    background: radial-gradient(
+        circle,
+        var(--primary) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-duration);
+    pointer-events: none;
+    z-index: -1;
+
+    @include tablet {
+      @include square(220px);
+    }
+  }
+
+  @include hover(false) {
+    &::before {
+      opacity: 0.1;
+    }
+  }
 }
 
 .score-counter {
@@ -14,48 +58,54 @@
   justify-content: center;
   align-items: center;
   grid-area: score-counter;
-
   @include fluid-text(32, 18);
-
   font-weight: 400;
 
   p {
     margin-block: auto;
+    color: var(--text);
   }
 
   &__price {
     @include flex-center();
     gap: 6px;
-    padding: 6px 10px;
+    padding: 8px 12px;
     background-color: var(--bg-light);
     border-radius: var(--border-radius-xxs);
     transition: background-color var(--transition-change-theme);
-
-    @include laptop {
-      gap: 4px;
-    }
+    border: 1px solid var(--border-color);
 
     @include tablet {
-      padding: 3px;
+      gap: 4px;
+      padding: 6px 10px;
     }
 
     &-image {
       @include square(36px);
       @include flex-center();
+      flex-shrink: 0;
 
-      @include laptop {
-        @include square(24px);
+      @include tablet {
+        @include square(28px);
       }
 
-      svg {
+      img {
         width: 100%;
         height: 100%;
+        object-fit: contain;
       }
     }
 
     &-digit {
       @include fluid-text(18, 16);
       color: var(--text);
+      font-weight: 600;
+      min-width: 60px;
+      text-align: center;
+
+      @include tablet {
+        min-width: 50px;
+      }
     }
   }
 }
